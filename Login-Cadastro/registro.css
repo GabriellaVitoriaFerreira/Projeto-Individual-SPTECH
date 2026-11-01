@@ -2,6 +2,8 @@
 /*Inter*/
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 /*Cormorant Garamond*/
+@import url('https://fonts.googleapis.com/css2?family=Allura&family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+/*Allura*/
 
 body {
     margin: 0;
@@ -11,6 +13,38 @@ body {
 
 * {
     box-sizing: border-box;
+}
+
+/*HEADER ---------------------------*/
+
+.header {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 30px;
+    width: 100%;
+    padding: 15px 60px;
+    color: white;
+    background-color: transparent;
+    box-sizing: border-box;
+    /*Faz com que o paddig não aumente o tamanho do header, crie um espaçamento dentro do tamanho delimitado*/
+    position: fixed;
+    /*Mantem o header fixo na tela*/
+
+}
+
+.header .logo{
+    margin-right: auto;
+}
+
+.header > a{
+    text-decoration: none;
+    color: #C4A574;
+}
+
+.header > a:hover{
+    color: #693D42;
 }
 
 .posicao-imagem-login {
@@ -57,7 +91,7 @@ body {
     color: #101B20;
 }
 
-.login>p {
+.login > p {
     width: 60%;
     text-align: left;
     font-weight: 300;
@@ -128,4 +162,17 @@ body {
     text-underline-offset: 2px;
     color: #693D42;
     padding-left: 3px;
+}
+
+/*GERAIS ---------------------------*/
+
+.fonte-cursiva {
+    font-family: "Allura", cursive;
+    text-decoration: none;
+    color: white;
+    font-size: 35px;
+}
+
+.fonte-cursiva:hover{
+    color: #C4A574;
 }
