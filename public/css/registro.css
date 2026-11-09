@@ -34,22 +34,45 @@ body {
 
 }
 
-.header .logo{
+.header .logo {
     margin-right: auto;
 }
 
-.header > a{
-    text-decoration: none;
+.header .fonte-cursiva {
+    font-size: 35px;
+    letter-spacing: normal;
+    color: white;
+}
+
+.header .fonte-cursiva:hover {
     color: #C4A574;
 }
 
-.header > a:hover{
+.header a {
+    text-decoration: none;
+    color: #C4A574;
+    font-weight: 400;
+    letter-spacing: 2px;
+    font-size: 14px;
+}
+
+.header a:hover {
     color: #693D42;
 }
 
 .posicao-imagem-login {
     display: flex;
     flex-direction: row;
+}
+
+.header .button-entrar {
+    color: #693D42;
+}
+
+.header .button-entrar:hover {
+    color: #C4A574;
+    border: 1px solid #C4A574;
+    transition: 0.5s;
 }
 
 /*IMAGEM ---------------------------*/
@@ -91,7 +114,7 @@ body {
     color: #101B20;
 }
 
-.login > p {
+.login>p {
     width: 60%;
     text-align: left;
     font-weight: 300;
@@ -173,6 +196,18 @@ body {
     font-size: 35px;
 }
 
-.fonte-cursiva:hover{
+.fonte-cursiva:hover {
     color: #C4A574;
+}
+
+.button-entrar {
+    padding: 9px 18px;
+    color: #693D42;
+    border: 1px solid #693D42;
+    text-decoration: none;
+    font-family: "Inter", sans-serif;
+    letter-spacing: 3px;
+    font-size: 14px;
+    font-weight: 300;
+    background-color: transparent;
 }

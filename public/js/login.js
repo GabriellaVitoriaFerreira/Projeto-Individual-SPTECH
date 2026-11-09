@@ -26,7 +26,7 @@ async function entrar() {
                 var usuario = await resposta.json();
 
                 alert("Login realizado com sucesso! Bem-vinda, " + usuario.nome);
-                window.location.href = "index.html";
+                window.location.href = "onePage.html";
 
             } else if (resposta.status == 403) {
 
