@@ -143,6 +143,13 @@ body {
     transition: 0.5s;
 }
 
+/*FILME --------------------------------------------*/
+
+.filme{
+    height: 100vh;
+    background-color: #F2EBDD;
+}
+
 /*GERAIS --------------------------------------------*/
 
 .fonte-cursiva {

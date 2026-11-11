@@ -26,7 +26,7 @@ async function entrar() {
                 var usuario = await resposta.json();
 
                 alert("Login realizado com sucesso! Bem-vinda, " + usuario.nome);
-                window.location.href = "onePage.html";
+                window.location.href = "C:\Users\gabri\Documents\SPTECH - MATÉRIAS\Pesquisa e Inovação\Projeto Individual\Projeto-Individual-SPTECH\public\dashboard\dashboard.html";
 
             } else if (resposta.status == 403) {
 

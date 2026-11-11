@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet"
+        href="C:\Users\gabri\Documents\SPTECH - MATÉRIAS\Pesquisa e Inovação\Projeto Individual\Projeto-Individual-SPTECH\public\css\dashboard.css">
+    <link rel="shortcut icon"
+        href="C:\Users\gabri\Documents\SPTECH - MATÉRIAS\Pesquisa e Inovação\Projeto Individual\Projeto-Individual-SPTECH\public\assets\chama-favicon.png"
+        type="image/x-icon">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+</head>
+
+<body>
+    <header class="header">
+        <div class="logo">
+            <a href="C:\Users\gabri\Documents\SPTECH - MATÉRIAS\Pesquisa e Inovação\Projeto Individual\Projeto-Individual-SPTECH\public\onePage.html"
+                class="fonte-cursiva">portrait</a>
+        </div>
+
+        <a href="C:\Users\gabri\Documents\SPTECH - MATÉRIAS\Pesquisa e Inovação\Projeto Individual\Projeto-Individual-SPTECH\public\onePage.html">INÍCIO</a>
+
+        <a href="">FILME</a>
+
+        <a href="C:\Users\gabri\Documents\SPTECH - MATÉRIAS\Pesquisa e Inovação\Projeto Individual\Projeto-Individual-SPTECH\public\login.html" class="button-entrar">ENTRAR</a>
+
+    </header>
+
+    <main>
+
+
+        <div class="titulo">
+            <h1>O Olhar do Público</h1>
+            <p>Análise das respostas do quiz e da conexão dos espectadores com a narrativa.</p>
+        </div>
+
+        <div class="containers-row">
+
+            <div class="container-kpi">
+
+                <div class="conteudo-kpi">
+                    <h4>PARTICIPAÇÕES NO QUIZ</h4>
+                    <span>50</span>
+                    <p>Registros</p>
+                </div>
+
+            </div>
+
+            <div class="container-kpi">
+
+                <div class="conteudo-kpi">
+                    <h4>MÉDIA DE ACERTOS</h4>
+                    <span>4</span>
+                    <p>Conhecimento do Público</p>
+                </div>
+
+            </div>
+
+            <div class="container-kpi">
+
+                <div class="conteudo-kpi">
+                    <h4>PERSONAGEM DESTAQUE</h4>
+                    <span>Heloise</span>
+                    <p>Preferência do público</p>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="grafico">
+            <div class="titulo-grafico">
+                <h3>O que mais marcou o público na obra?</h3>
+                <p>Votação sobre elementos marcantes (Total: 50 votos)</p>
+            </div>
+            <canvas id="myChart"></canvas>
+        </div>
+    </main>
+
+</body>
+
+<script>
+
+    const ctx = document.getElementById('myChart');
+
+    const data = {
+        labels: [
+            'Fotografia e direção de arte', 
+            'Construção das personagens', 
+            'Representatividade', 
+            'Narrativa e emoções', 
+            'Simbolismo e memória'
+        ],
+        datasets: [{
+            axis: 'y',
+            label: 'Votos',
+            data: [16, 12, 11, 7, 4],
+            fill: false,
+            backgroundColor: [
+                'rgba(196, 165, 116, 0.7)',
+                'rgba(196, 165, 116, 0.4)',
+                'rgba(138, 77, 85, 0.7)',
+                'rgba(120, 130, 110, 0.6)',
+                'rgba(90, 120, 100, 0.6)'
+            ],
+            borderColor: [
+                'rgb(196, 165, 116)',
+                'rgb(196, 165, 116)',
+                'rgb(138, 77, 85)',
+                'rgb(120, 130, 110)',
+                'rgb(90, 120, 100)'
+            ],
+            borderWidth: 1
+        }]
+    };
+
+    const config = {
+        type: 'bar',
+        data: data,
+        options: {
+            indexAxis: 'y',
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    display: false // Esconde a legenda superior
+                }
+            },
+            scales: {
+                x: {
+                    grid: {
+                        color: 'rgba(255, 255, 255, 0.05)'
+                    },
+                    ticks: {
+                        color: '#ffffff'
+                    }
+                },
+                y: {
+                    grid: {
+                        display: false // Remove as linhas de grade verticais
+                    },
+                    ticks: {
+                        color: '#ffffff',
+                        font: {
+                            size: 13
+                        }
+                    }
+                }
+            }
+        }
+    };
+
+    const myChart = new Chart(ctx, config);
+
+</script>
+
+
+
+</html>

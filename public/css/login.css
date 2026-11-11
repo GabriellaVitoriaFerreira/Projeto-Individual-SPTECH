@@ -101,12 +101,13 @@ body {
     align-items: center;
     justify-content: center;
     background-color: #F2EBDD;
+    padding-top: 90px;
 
 }
 
 .login h1 {
     width: 60%;
-    margin: 0px 0px 25px;
+    margin: 0px 0px 15px;
     font-family: "Cormorant Garamond", serif;
     font-size: 60px;
     font-weight: 300;
@@ -126,7 +127,7 @@ body {
 .formulario {
     display: flex;
     flex-direction: column;
-    gap: 30px;
+    gap: 20px;
     width: 60%;
 }
 

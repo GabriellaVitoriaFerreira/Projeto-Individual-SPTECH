@@ -1,0 +1,198 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+/*Inter*/
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+/*Cormorant Garamond*/
+@import url('https://fonts.googleapis.com/css2?family=Allura&family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+/*Allura*/
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Inter", sans-serif;
+    background-color: #101B20;
+    color: white;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+/*HEADER ---------------------------*/
+
+.header {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 30px;
+    width: 100%;
+    padding: 15px 60px;
+    color: white;
+    background-color: transparent;
+    position: fixed;
+    border-bottom: 1px solid rgba(196, 165, 116, 0.5);
+}
+
+.header .logo {
+    margin-right: auto;
+}
+
+.header .fonte-cursiva {
+    font-size: 35px;
+    letter-spacing: normal;
+    color: #C4A574;
+}
+
+.header .fonte-cursiva:hover {
+    color: white;
+}
+
+.header a {
+    text-decoration: none;
+    color: white;
+    font-weight: 200;
+    letter-spacing: 2px;
+    font-size: 14px;
+}
+
+.header a:hover {
+    color: #C4A574;
+}
+
+.header .button-entrar {
+    color: #C4A574;
+}
+
+.header .button-entrar:hover {
+    color: white;
+    border: 1px solid white;
+    transition: 0.5s;
+}
+
+/*MAIN ---------------------------*/
+
+main {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.titulo {
+    text-align: center;
+    margin-bottom: 20px;
+    margin-top: 35px;
+}
+
+.titulo h1 {
+    font-family: "Cormorant Garamond", sans-serif;
+    font-size: 37px;
+    margin: 35px 0px 0px 0px;
+    font-weight: 350;
+}
+
+.titulo p {
+    color: rgb(150, 150, 150);
+}
+
+/*CONTAINERS ---------------------------*/
+
+.containers-row {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+}
+
+.container-kpi {
+    height: 17vh;
+    width: 20vw;
+    background-color: rgba(21, 40, 45, 0.5);
+    border: 0.5px solid rgba(196, 165, 116, 0.6);
+    /* padding: 10px; */
+}
+
+.conteudo-kpi {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.conteudo-kpi h4 {
+    font-family: "Cormorant Garamond", sans-serif;
+    font-size: 15px;
+    color: #C4A574;
+    margin-bottom: 13px;
+}
+
+.conteudo-kpi p {
+    font-size: 12px;
+    color: rgb(150, 150, 150);
+}
+
+.conteudo-kpi span {
+    font-size: 20px;
+}
+
+.grafico {
+    height: 42vh;
+    width: 62vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    background-color: rgba(21, 40, 45, 0.5);
+    border: 1px solid rgba(196, 165, 116, 0.6);
+    margin-top: 30px;
+    padding: 20px;
+}
+
+.grafico canvas {
+    position: relative;
+    height: 75% !important;
+    width: 100% !important;
+}
+
+.titulo-grafico {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.titulo-grafico h3 {
+    margin: 0px;
+    font-size: 24px;
+    font-family: "Cormorant Garamond", sans-serif;
+}
+
+.titulo-grafico p {
+    margin: 5px 0px 0px 5px;
+    font-size: 14px;
+    color: rgb(150, 150, 150);
+}
+
+/*GERAIS ---------------------------*/
+
+.fonte-cursiva {
+    font-family: "Allura", cursive;
+    text-decoration: none;
+    color: white;
+    font-size: 35px;
+}
+
+.fonte-cursiva:hover {
+    color: #C4A574;
+}
+
+.button-entrar {
+    padding: 9px 18px;
+    color: #C4A574;
+    border: 1px solid #C4A574;
+    text-decoration: none;
+    font-family: "Inter", sans-serif;
+    letter-spacing: 3px;
+    font-size: 14px;
+    font-weight: 300;
+    background-color: transparent;
+}
