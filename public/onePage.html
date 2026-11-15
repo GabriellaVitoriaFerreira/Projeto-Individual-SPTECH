@@ -15,9 +15,9 @@
             <a href="" class="fonte-cursiva">portrait</a>
         </div>
 
-            <a href="">INÍCIO</a>
+        <a href="">INÍCIO</a>
 
-            <a href="">FILME</a>
+        <a href="">FILME</a>
 
         <a href="login.html" class="button-entrar">ENTRAR</a>
 
@@ -39,14 +39,57 @@
 
     </section>
 
-    <section class="filme">
+    <section class="importancia">
 
-        <div>
-            <img src="" alt="">
+        <div class="borda-imagem">
+
+            <img src="assets/retrato-de-uma-jovem-em-chamas.jpeg" alt="">
+
+        </div>
+        </div>
+
+        <div class="texto">
+            <div class="importancia-texto">
+                <h2>O Significado da Obra</h2>
+                
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit<br>Id dolorem nihil exercitationem,
+                necessitatibus dicta odit quidem pariatur amet <br>facilis, dignissimos voluptatem similique,
+                eos
+                libero<br> enim mollitia ut? Dicta, cum deleniti.
+                <br><br>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit<br>Id dolorem nihil exercitationem,
+                necessitatibus dicta odit quidem pariatur amet <br>facilis, dignissimos voluptatem similique,
+                eos
+                libero<br> enim mollitia ut? Dicta, cum deleniti.
+            </p>
         </div>
         
+        <p>PROJETO INDIVIDUAL</p>
+        
+        <div class="assinatura">
+            <span>Gabi</span>
+            <p>"Citação preferida"</p>
+        </div>
+    </div>
+
+        </div>
+
     </section>
 
 </body>
+
+<script>
+
+    /*Código para a mudança do header após scroll*/
+    const header = document.querySelector('.header');
+
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+            header.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
+        }
+    });
+</script>
 
 </html>

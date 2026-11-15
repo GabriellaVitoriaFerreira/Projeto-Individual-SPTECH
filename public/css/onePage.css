@@ -15,7 +15,7 @@ body {
     box-sizing: border-box;
 }
 
-::selection{ 
+::selection {
     background-color: #C4A574;
     color: white;
     /* Estilo da seleção de texto (destaque) */
@@ -33,10 +33,16 @@ body {
     padding: 15px 150px;
     color: white;
     background-color: transparent;
-    box-sizing: border-box;
-    /*Faz com que o paddig não aumente o tamanho do header, crie um espaçamento dentro do tamanho delimitado*/
     position: fixed;
-    /*Mantem o header fixo na tela*/
+    z-index: 1000;
+    transition: background-color 0.4s ease, padding 0.4s ease;
+}
+
+.header.scrolled {
+    background-color: rgba(16, 27, 32, 0.9);
+    backdrop-filter: blur(10px);
+    /*Efeito de vidro fosco*/
+    border-bottom: #C4A574;
 }
 
 .header .logo {
@@ -73,11 +79,11 @@ body {
 /*INICIO --------------------------------------------*/
 
 .inicio {
-    background-image: url(/public/assets/cena-heloise-escurecida.png);
+    /* background-image: url(/public/assets/cena-heloise-escurecida.png); */
     background-position: center;
     background-size: cover;
-    height: 100vh;
-    width: 100vw;
+    min-height: 100vh;
+    width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -145,10 +151,91 @@ body {
 
 /*FILME --------------------------------------------*/
 
-.filme{
-    height: 100vh;
+.importancia {
+    min-height: 100vh;
+    width: 100%;
     background-color: #F2EBDD;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 140px 150px 60px 150px;
+    gap: 80px;
 }
+
+.borda-imagem {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 75vh;
+    width: 65%;
+    border: 1px solid #C4A574;
+    border-radius: 3px;
+}
+
+.borda-imagem img {
+    height: 95%;
+    width: 95%;
+    background-position: center;
+
+}
+
+.texto {
+    height: 75vh;
+    width: 75%;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+.texto > p {
+    font-weight: 400;
+    color: rgb(91, 91, 91);
+    font-size: 14px;
+    letter-spacing: 2px;
+}
+
+.importancia-texto {
+    border-bottom: 1px solid rgba(128, 128, 128, 0.5);
+    padding-bottom: 20px;
+    margin-bottom: 15px;
+}
+
+.importancia-texto h2 {
+    font-size: 44px;
+    color: #693d42;
+    font-family: "Cormorant Garamond", sans-serif;
+    font-weight: 1000;
+    margin: 15px 0px 15px 0px;
+}
+
+.importancia-texto p {
+    font-size: 23px;
+    font-weight: 400;
+    color: rgb(91, 91, 91);
+}
+
+.assinatura {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.assinatura span{
+    font-family: "Allura", sans-serif;
+    font-size: 40px;
+    font-weight: 600;
+    color: #693d42;
+}
+
+.assinatura p{
+    color: rgb(91, 91, 91);
+    font-family: "Cormorant Garamond", sans-serif;
+}
+
+
 
 /*GERAIS --------------------------------------------*/
 
@@ -181,4 +268,10 @@ h1 {
     font-size: 14px;
     font-weight: 300;
     background-color: transparent;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
 }
