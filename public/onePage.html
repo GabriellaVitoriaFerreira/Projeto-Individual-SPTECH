@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Página Inicial</title>
     <link rel="stylesheet" href="css/onePage.css">
+    <link rel="shortcut icon" href="assets/chama-favicon.png" type="image/x-icon">
 </head>
 
 <body>
@@ -37,8 +38,6 @@
 
         <div class="secundario">
             <p>"Um retrato de arte, amor e o poder de ser vista"</p>
-
-            <a href="">CONHEÇA O FILME</a>
         </div>
 
     </section>
@@ -70,7 +69,7 @@
             <p>PROJETO INDIVIDUAL</p>
 
             <div class="assinatura">
-                <span>Gabi</span>
+                <span>Gabriella</span>
                 <p>"Citação preferida"</p>
             </div>
         </div>
@@ -129,7 +128,7 @@
                 <h3>ATO III — A DESPEDIDA</h3>
                 <h2>A ESCOLHA DE ORFEU</h2>
                 <p>
-                    Com a chegada do fim da estadia, o peso das normas sociais daquela época batem à porta. A história
+                    Com a chegada do fim da estadia, o peso das normas sociais da época batem à porta. A história
                     dialoga com o mito de Orfeu e Eurídice: olhar para trás não por impaciência, mas como uma escolha
                     consciente pela memória.
                 </p>
@@ -157,7 +156,8 @@
             <div class="personagens-texto">
                 <p id="funcao">PINTORA</p>
                 <h2 id="nome">Marianne</h2>
-                <span id="resumo">Uma jovem artista talentosa contratada para pintar secretamente o retrato de casamento de
+                <span id="resumo">Uma jovem artista talentosa contratada para pintar secretamente o retrato de casamento
+                    de
                     Héloïse, observando cada detalhe seu durante o dia para registrá-la à noite.</span>
             </div>
 
@@ -166,93 +166,117 @@
         </div>
     </section>
 
+    <section class="ancora">
+
+        <div class="ancora-texto">
+            <span>CONTINUAÇÃO DA EXPERIÊNCIA | ÁREA INTERATIVA</span>
+            <h2>Teste a sua percepção sobre a obra</h2>
+            <p>Crie uma conta para responder ao Quiz de <i>Retrato de uma Jovem em Chamas</i> e para explorar outras
+                atividades</p>
+
+            <div class="ancora-row">
+                <a href="registro.html" class="ancora-botao">CRIAR CONTA E INICIAR QUIZ</a>
+                <a href="login.html" class="ancora-botao-vazio"> JÁ TENHO CADASTRO</a>
+            </div>
+        </div>
+
+    </section>
+
+    <section class="footer">
+        <span>Retrato de Uma Jovem em Chamas</span>
+        <div class="footer-row">
+            <p>Projeto individual desenvolvido por</p>
+            <span>Gabriella Vitoria</span>
+        </div>
+    </section>
 
 
-<script>
 
-    /*Código para a mudança do header após scroll*/
-    const header = document.querySelector('.header');
+    <script>
 
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
-            header.classList.add('scrolled');
-        } else {
-            header.classList.remove('scrolled');
+        /*Código para a mudança do header após scroll*/
+        const header = document.querySelector('.header');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        /*Função de troca de informações na seção de personagens*/
+        const personagens = [
+            {
+                funcao: "PINTORA",
+                nome: "Marianne",
+                resumo: "Uma jovem artista talentosa contratada para pintar secretamente o retrato de casamento de Héloïse, observando cada detalhe seu durante o dia para registrá-la à noite.",
+                imagem: "assets/marianne.jpeg"
+            },
+            {
+                funcao: "MUSA",
+                nome: "Héloïse",
+                resumo: "Uma jovem aristocrata que acabou de deixar o convento e resiste ao casamento arranjado em Milão, recusando-se inicialmente a posar para qualquer pintor.",
+                imagem: "assets/heloise.jpg"
+            },
+            {
+                funcao: "CRIADA",
+                nome: "Sophie",
+                resumo: "A jovem criada da casa na ilha da Bretanha. Entre tarefas domésticas e bordados, cria um laço profundo de cumplicidade e igualdade com Marianne e Héloïse.",
+                imagem: "assets/sophie.jpg"
+            }
+        ];
+
+        // 2. Variável que controla qual personagem está visível (começa na posição 0)
+        let indiceAtual = 0;
+
+        // 3. Capturando os elementos do HTML pelos IDs
+        const btnAnterior = document.getElementById('anterior');
+        const btnProximo = document.getElementById('proximo');
+        const imgElement = document.getElementById('personagem-img');
+        const funcaoElement = document.getElementById('funcao');
+        const nomeElement = document.getElementById('nome');
+        const resumoElement = document.getElementById('resumo');
+
+        // Capturando os containers para o efeito suave de transição
+        const containerImagem = document.querySelector('.borda-imagem-personagens');
+        const containerTexto = document.querySelector('.personagens-texto');
+
+        // 4. Função que atualiza a foto e os textos na tela
+        function atualizarPersonagem(novoIndice) {
+
+            setTimeout(() => {
+                const personagem = personagens[novoIndice];
+
+                imgElement.src = personagem.imagem;
+                imgElement.alt = personagem.nome;
+                funcaoElement.textContent = personagem.funcao;
+                nomeElement.textContent = personagem.nome;
+                resumoElement.textContent = personagem.resumo;
+
+                // Remove a classe para o conteúdo reaparecer suavemente
+                containerImagem.classList.remove('oculto');
+                containerTexto.classList.remove('oculto');
+            }, 250);
         }
-    });
 
-    /*Função de troca de informações na seção de personagens*/
-    const personagens = [
-        {
-            funcao: "PINTORA",
-            nome: "Marianne",
-            resumo: "Uma jovem artista talentosa contratada para pintar secretamente o retrato de casamento de Héloïse, observando cada detalhe seu durante o dia para registrá-la à noite.",
-            imagem: "assets/marianne.jpeg"
-        },
-        {
-            funcao: "A MUSA",
-            nome: "Héloïse",
-            resumo: "Uma jovem aristocrata que acabou de deixar o convento e resiste ao casamento arranjado em Milão, recusando-se inicialmente a posar para qualquer pintor.",
-            imagem: "assets/heloise.jpg"
-        },
-        {
-            funcao: "CRIADA",
-            nome: "Sophie",
-            resumo: "A jovem criada da casa na ilha da Bretanha. Entre tarefas domésticas e bordados, cria um laço profundo de cumplicidade e igualdade com Marianne e Héloïse.",
-            imagem: "assets/sophie.jpg"
-        }
-    ];
+        // 5. Eventos de clique nas setas
+        btnProximo.addEventListener('click', () => {
+            indiceAtual++;
+            if (indiceAtual >= personagens.length) {
+                indiceAtual = 0; // Volta para a primeira personagem ao chegar no fim
+            }
+            atualizarPersonagem(indiceAtual);
+        });
 
-    // 2. Variável que controla qual personagem está visível (começa na posição 0)
-    let indiceAtual = 0;
-
-    // 3. Capturando os elementos do HTML pelos IDs
-    const btnAnterior = document.getElementById('anterior');
-    const btnProximo = document.getElementById('proximo');
-    const imgElement = document.getElementById('personagem-img');
-    const funcaoElement = document.getElementById('funcao');
-    const nomeElement = document.getElementById('nome');
-    const resumoElement = document.getElementById('resumo');
-
-    // Capturando os containers para o efeito suave de transição
-    const containerImagem = document.querySelector('.borda-imagem-personagens');
-    const containerTexto = document.querySelector('.personagens-texto');
-
-    // 4. Função que atualiza a foto e os textos na tela
-    function atualizarPersonagem(novoIndice) {
-
-        setTimeout(() => {
-            const personagem = personagens[novoIndice];
-
-            imgElement.src = personagem.imagem;
-            imgElement.alt = personagem.nome;
-            funcaoElement.textContent = personagem.funcao;
-            nomeElement.textContent = personagem.nome;
-            resumoElement.textContent = personagem.resumo;
-
-            // Remove a classe para o conteúdo reaparecer suavemente
-            containerImagem.classList.remove('oculto');
-            containerTexto.classList.remove('oculto');
-        }, 250);
-    }
-
-    // 5. Eventos de clique nas setas
-    btnProximo.addEventListener('click', () => {
-        indiceAtual++;
-        if (indiceAtual >= personagens.length) {
-            indiceAtual = 0; // Volta para a primeira personagem ao chegar no fim
-        }
-        atualizarPersonagem(indiceAtual);
-    });
-
-    btnAnterior.addEventListener('click', () => {
-        indiceAtual--;
-        if (indiceAtual < 0) {
-            indiceAtual = personagens.length - 1; // Vai para a última ao voltar da primeira
-        }
-        atualizarPersonagem(indiceAtual);
-    });
-</script>
+        btnAnterior.addEventListener('click', () => {
+            indiceAtual--;
+            if (indiceAtual < 0) {
+                indiceAtual = personagens.length - 1; // Vai para a última ao voltar da primeira
+            }
+            atualizarPersonagem(indiceAtual);
+        });
+    </script>
 
 </body>
 
