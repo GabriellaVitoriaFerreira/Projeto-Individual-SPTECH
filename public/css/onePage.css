@@ -168,7 +168,7 @@ body {
     gap: 80px;
 }
 
-.borda-imagem {
+.borda-imagem-importancia {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -178,7 +178,7 @@ body {
     border-radius: 3px;
 }
 
-.borda-imagem img {
+.borda-imagem-importancia img {
     height: 95%;
     width: 95%;
     background-position: center;
@@ -283,10 +283,111 @@ body {
     font-family: "Cormorant Garamond", sans-serif;
 }
 
-.ato-1-texto {
-    border-bottom: 1px solid #C4A574;
-    padding-bottom: 20px;
-    margin-bottom: 15px;
+/*ATO 2 --------------------------------------------*/
+
+.ato-2 {
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 140px 150px 60px 150px;
+}
+
+/*ATO 3 --------------------------------------------*/
+
+.ato-3 {
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 140px 150px 60px 150px;
+}
+
+/*PERSONAGENS --------------------------------------------*/
+
+.personagens {
+    min-height: 100vh;
+    width: 100%;
+    background-color: #F2EBDD;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 140px 150px 60px 150px;
+}
+
+.personagens>h1 {
+    margin-bottom: 25px;
+    font-family: "Cormorant Garamond", sans-serif;
+    font-size: 42px;
+}
+
+.borda-imagem-personagens {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 65vh;
+    width: 35%;
+    border: 1px solid #C4A574;
+    border-radius: 3px;
+    transition: opacity 0.3s ease;
+}
+
+.borda-imagem-personagens img {
+    height: 95%;
+    width: 95%;
+    background-position: center;
+    object-fit: cover;
+}
+
+.personagens-texto {
+    height: 60vh;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    transition: opacity 0.3s ease;
+}
+
+.personagens-texto p{
+    color: #693d42;
+    letter-spacing: 3px;
+    font-weight: bold;
+}
+
+.personagens-texto h2{
+    font-family: "Cormorant Garamond", sans-serif;
+    font-size: 43px;
+    margin: 10px 0px 10px 0px;
+}
+
+.personagens-texto span{
+    color: rgb(91, 91, 91);
+}
+
+.personagens-row {
+    display: flex;
+    flex-direction: row;
+    gap: 40px;
+    align-items: center;
+    width: 100%;
+}
+
+.seta{
+    background-color: transparent;
+    border: 1px solid #C4A574; 
+    color: #C4A574;
+    cursor: pointer;
+    height: 45px;
+    width: 45px;
+}
+
+.seta:hover{
+    background-color: #C4A574;
+    color: white;
+    transition: 0.3s;
 }
 
 /*GERAIS --------------------------------------------*/
@@ -322,8 +423,8 @@ h1 {
     background-color: transparent;
 }
 
-.row {
-    display: flex;
-    flex-direction: row;
-    gap: 15px;
+.atos-texto {
+    border-bottom: 1px solid #C4A574;
+    padding-bottom: 20px;
+    margin-bottom: 15px;
 }

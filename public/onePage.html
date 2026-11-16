@@ -12,12 +12,16 @@
     <header class="header">
 
         <div class="logo">
-            <a href="" class="fonte-cursiva">portrait</a>
+            <a href="#inicio" class="fonte-cursiva">portrait</a>
         </div>
 
         <a href="#inicio">INÍCIO</a>
 
+        <a href="#importancia">IMPORTÂNCIA</a>
+
         <a href="#ato-1">FILME</a>
+
+        <a href="#personagens">PERSONAGENS</a>
 
         <a href="login.html" class="button-entrar">ENTRAR</a>
 
@@ -39,13 +43,12 @@
 
     </section>
 
-    <section class="importancia">
+    <section class="importancia" id="importancia">
 
-        <div class="borda-imagem">
+        <div class="borda-imagem-importancia">
 
             <img src="assets/retrato-de-uma-jovem-em-chamas-redimensionada.jpeg" alt="">
 
-        </div>
         </div>
 
         <div class="texto">
@@ -72,20 +75,20 @@
             </div>
         </div>
 
-        </div>
 
     </section>
 
     <section class="ato-1" id="ato-1"
         style="background-image: url(assets/cena-ato-1.jpeg); background-repeat: no-repeat; background-size: cover;">
+
         <div class="container">
-            <div class="ato-1-texto">
+            <div class="atos-texto">
 
                 <h3>ATO I — A CHEGADA E A OBSERVAÇÃO</h3>
-                <h2>O olhar silencioso</h2>
+                <h2>O Olhar Silencioso</h2>
                 <p>
-                    Marianne desembarca na ilha isolada carregando suas telas e a 
-                    missão de pintar Héloïse em segredo.<br> Nas caminhadas à beira mar
+                    Marianne desembarca na ilha isolada carregando suas telas e a
+                    missão de pintar Héloïse em segredo.<br> Nas caminhadas à beira-mar,
                     o olhar ainda é unilateral: gestos memorizados às
                     escondidas e a tensão de quem tenta capturar alguém sem permissão.
                 </p>
@@ -93,9 +96,77 @@
             </div>
             <span>"Citação ATO I"</span>
         </div>
+
     </section>
 
-</body>
+    <section class="ato-2" id="ato-2"
+        style="background-image: url(assets/cena-ato-2.jpeg); background-repeat: no-repeat; background-size: cover;">
+
+        <div class="container">
+            <div class="atos-texto">
+
+                <h3>ATO II — A FOGUEIRA E A RECIPROCIDADE</h3>
+                <h2>Quando a Chama Se Acende</h2>
+                <p>
+                    A primeira pintura é destruída para dar lugar à honestidade. Ao redor da fogueira,
+                    o coro feminino dissolve as barreiras e dá lugar à paixão. Quando Héloïse revela que também observa
+                    cada gesto de Marianne,
+                    o retrato passa a ser construído em conjunto.
+                </p>
+
+            </div>
+            <span>"Citação ATO II"</span>
+        </div>
+
+    </section>
+
+    <section class="ato-3" id="ato-3"
+        style="background-image: url(assets/cena-ato-3.jpeg); background-repeat: no-repeat; background-size: cover;">
+
+        <div class="container">
+            <div class="atos-texto">
+
+                <h3>ATO III — A DESPEDIDA</h3>
+                <h2>A ESCOLHA DE ORFEU</h2>
+                <p>
+                    Com a chegada do fim da estadia, o peso das normas sociais daquela época batem à porta. A história
+                    dialoga com o mito de Orfeu e Eurídice: olhar para trás não por impaciência, mas como uma escolha
+                    consciente pela memória.
+                </p>
+
+            </div>
+            <span>"Ele não fez a escolha do amante, mas a do poeta."</span>
+        </div>
+
+    </section>
+
+    <section class="personagens" id="personagens">
+
+        <h1>Personagens</h1>
+
+        <div class="personagens-row">
+
+            <button id="anterior" class="seta">&#10094;</button>
+
+            <div class="borda-imagem-personagens">
+
+                <img src="assets/marianne.jpeg" alt="Marianne" id="personagem-img">
+
+            </div>
+
+            <div class="personagens-texto">
+                <p id="funcao">PINTORA</p>
+                <h2 id="nome">Marianne</h2>
+                <span id="resumo">Uma jovem artista talentosa contratada para pintar secretamente o retrato de casamento de
+                    Héloïse, observando cada detalhe seu durante o dia para registrá-la à noite.</span>
+            </div>
+
+            <button id="proximo" class="seta">&#10095;</button>
+
+        </div>
+    </section>
+
+
 
 <script>
 
@@ -109,6 +180,80 @@
             header.classList.remove('scrolled');
         }
     });
+
+    /*Função de troca de informações na seção de personagens*/
+    const personagens = [
+        {
+            funcao: "PINTORA",
+            nome: "Marianne",
+            resumo: "Uma jovem artista talentosa contratada para pintar secretamente o retrato de casamento de Héloïse, observando cada detalhe seu durante o dia para registrá-la à noite.",
+            imagem: "assets/marianne.jpeg"
+        },
+        {
+            funcao: "A MUSA",
+            nome: "Héloïse",
+            resumo: "Uma jovem aristocrata que acabou de deixar o convento e resiste ao casamento arranjado em Milão, recusando-se inicialmente a posar para qualquer pintor.",
+            imagem: "assets/heloise.jpg"
+        },
+        {
+            funcao: "CRIADA",
+            nome: "Sophie",
+            resumo: "A jovem criada da casa na ilha da Bretanha. Entre tarefas domésticas e bordados, cria um laço profundo de cumplicidade e igualdade com Marianne e Héloïse.",
+            imagem: "assets/sophie.jpg"
+        }
+    ];
+
+    // 2. Variável que controla qual personagem está visível (começa na posição 0)
+    let indiceAtual = 0;
+
+    // 3. Capturando os elementos do HTML pelos IDs
+    const btnAnterior = document.getElementById('anterior');
+    const btnProximo = document.getElementById('proximo');
+    const imgElement = document.getElementById('personagem-img');
+    const funcaoElement = document.getElementById('funcao');
+    const nomeElement = document.getElementById('nome');
+    const resumoElement = document.getElementById('resumo');
+
+    // Capturando os containers para o efeito suave de transição
+    const containerImagem = document.querySelector('.borda-imagem-personagens');
+    const containerTexto = document.querySelector('.personagens-texto');
+
+    // 4. Função que atualiza a foto e os textos na tela
+    function atualizarPersonagem(novoIndice) {
+
+        setTimeout(() => {
+            const personagem = personagens[novoIndice];
+
+            imgElement.src = personagem.imagem;
+            imgElement.alt = personagem.nome;
+            funcaoElement.textContent = personagem.funcao;
+            nomeElement.textContent = personagem.nome;
+            resumoElement.textContent = personagem.resumo;
+
+            // Remove a classe para o conteúdo reaparecer suavemente
+            containerImagem.classList.remove('oculto');
+            containerTexto.classList.remove('oculto');
+        }, 250);
+    }
+
+    // 5. Eventos de clique nas setas
+    btnProximo.addEventListener('click', () => {
+        indiceAtual++;
+        if (indiceAtual >= personagens.length) {
+            indiceAtual = 0; // Volta para a primeira personagem ao chegar no fim
+        }
+        atualizarPersonagem(indiceAtual);
+    });
+
+    btnAnterior.addEventListener('click', () => {
+        indiceAtual--;
+        if (indiceAtual < 0) {
+            indiceAtual = personagens.length - 1; // Vai para a última ao voltar da primeira
+        }
+        atualizarPersonagem(indiceAtual);
+    });
 </script>
+
+</body>
 
 </html>
