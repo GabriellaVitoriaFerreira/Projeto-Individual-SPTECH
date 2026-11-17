@@ -47,7 +47,7 @@ Uma página única, com navegação por âncoras, dividida nas seguintes seçõe
 | **Ato 2** | Desenvolvimento da história |
 | **Ato 3** | Desfecho da história |
 | **Personagens** | Apresentação dos personagens principais |
-| **Âncora / Footer** | Rodapé com navegação e créditos |
+| **Âncora / Footer** | Rodapé com âncora e créditos |
 
 ### Login e Cadastro
 

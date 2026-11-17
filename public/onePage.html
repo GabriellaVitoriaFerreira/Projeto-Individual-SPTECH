@@ -159,10 +159,13 @@
                 <p id="funcao">PINTORA</p>
                 <h2 id="nome">Marianne</h2>
                 <div class="personagens-texto-span">
-                    <span id="resumo">Uma jovem artista talentosa contratada para pintar secretamente o retrato de
-                        casamento
-                        de
-                        Héloïse, observando cada detalhe seu durante o dia para registrá-la à noite.</span>
+                    <span id="resumo">
+                        Uma jovem artista talentosa contratada para pintar secretamente o retrato de
+                        casamento de Héloïse, observando cada detalhe da modelo para pintá-la de memória, acaba se
+                        envolvendo profundamente com ela. <br><br> Marianne representa o olhar feminino livre das
+                        convenções artísticas tradicionais, já que utiliza a arte não apenas como trabalho, mas como uma
+                        forma de registro afetivo e memória.
+                    </span>
                 </div>
 
             </div>
@@ -216,25 +219,25 @@
             {
                 funcao: "PINTORA",
                 nome: "Marianne",
-                resumo: "Uma jovem artista talentosa contratada para pintar secretamente o retrato de casamento de Héloïse, observando cada detalhe seu durante o dia para registrá-la à noite.",
+                resumo: "Uma jovem artista talentosa contratada para pintar secretamente o retrato de casamento de Héloïse, observando cada detalhe da modelo para pintá-la de memória, acaba se envolvendo profundamente com ela. <br><br> Marianne representa o olhar feminino livre das convenções artísticas tradicionais, já que utiliza a arte não apenas como trabalho, mas como uma forma de registro afetivo e memória.",
                 imagem: "assets/personagem-marianne.jpeg"
             },
             {
                 funcao: "MUSA",
                 nome: "Héloïse",
-                resumo: "Uma jovem aristocrata que acabou de deixar o convento e resiste ao casamento arranjado em Milão, recusando-se inicialmente a posar para qualquer pintor.",
+                resumo: "Recém-saída do convento, Héloïse é uma jovem prometida a um nobre milanês que nunca viu. Embora se mostre inicialmente silenciosa e rebelde diante do destino imposto, encontra na convivência com Marianne um espaço raro de escuta e reciprocidade. <br><br> Simboliza o despertar da própria voz e do desejo em meio a uma vida já traçada, provando que a verdadeira liberdade pode existir na escolha consciente de sentir e lembrar.",
                 imagem: "assets/personagem-heloise.jpeg"
             },
             {
                 funcao: "CONDESSA",
                 nome: "La Comtesse",
-                resumo: "Criando...",
+                resumo: "A mãe pragmática de Héloïse e antiga aristocrata italiana. Determinada a garantir o futuro da filha através do casamento em Milão, contrata Marianne para pintar o retrato em segredo. <br><br> Em uma época marcada pela repressão dos desejos e da autonomia feminina, a personagem personifica o peso das convenções sociais impostas pelo sistema patriarcal, mostrando como as próprias mulheres acabam reproduzindo essas exigências para sobreviver dentro delas.",
                 imagem: "assets/personagem-condessa.jpeg"
             },
             {
                 funcao: "CRIADA",
                 nome: "Sophie",
-                resumo: "A jovem criada da casa na ilha da Bretanha. Entre tarefas domésticas e bordados, cria um laço profundo de cumplicidade e igualdade com Marianne e Héloïse.",
+                resumo: "Na ausência da Condessa, a jovem criada da casa divide a rotina doméstica com Marianne e Héloïse. Como não há a rigidez das hierarquias entre elas, estabelece com as duas uma relação marcada pela cumplicidade e pelo cuidado mútuo. <br><br> Encarna a sororidade e o apoio coletivo entre mulheres, ao mesmo tempo em que traz à tona experiências reais e silenciadas das condições de aborto da época.",
                 imagem: "assets/personagem-sophie.jpeg"
             }
         ];
@@ -264,7 +267,7 @@
                 imgElement.alt = personagem.nome;
                 funcaoElement.textContent = personagem.funcao;
                 nomeElement.textContent = personagem.nome;
-                resumoElement.textContent = personagem.resumo;
+                resumoElement.innerHTML = personagem.resumo;
 
                 // Remove a classe para o conteúdo reaparecer suavemente
                 containerImagem.classList.remove('oculto');
