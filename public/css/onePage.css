@@ -329,10 +329,19 @@ body {
     padding: 140px 150px 60px 150px;
 }
 
-.personagens>h1 {
-    margin-bottom: 45px;
+.personagens h1 {
+    /* margin-bottom: 45px; */
     font-family: "Cormorant Garamond", sans-serif;
     font-size: 42px;
+    color: #693d42;
+}
+
+.personagens-linha{
+    border-bottom: 1px solid #C4A574;
+    width: 86%;
+    margin-bottom: 50px;
+    padding-bottom: 15px;
+    text-align: center;
 }
 
 .borda-imagem-personagens {
@@ -355,7 +364,7 @@ body {
 
 .personagens-texto {
     height: 60vh;
-    width: 50%;
+    width: 40%;
     display: flex;
     flex-direction: column;
     text-align: left;
@@ -376,6 +385,11 @@ body {
 
 .personagens-texto span {
     color: rgb(91, 91, 91);
+}
+
+.personagens-texto-span{
+    width: 93%;
+    margin: auto 0;
 }
 
 .personagens-row {

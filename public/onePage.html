@@ -141,7 +141,9 @@
 
     <section class="personagens" id="personagens">
 
-        <h1>Personagens</h1>
+        <div class="personagens-linha">
+            <h1>Personagens</h1>
+        </div>
 
         <div class="personagens-row">
 
@@ -149,16 +151,20 @@
 
             <div class="borda-imagem-personagens">
 
-                <img src="assets/marianne.jpeg" alt="Marianne" id="personagem-img">
+                <img src="assets/personagem-marianne.jpeg" alt="Marianne" id="personagem-img">
 
             </div>
 
             <div class="personagens-texto">
                 <p id="funcao">PINTORA</p>
                 <h2 id="nome">Marianne</h2>
-                <span id="resumo">Uma jovem artista talentosa contratada para pintar secretamente o retrato de casamento
-                    de
-                    Héloïse, observando cada detalhe seu durante o dia para registrá-la à noite.</span>
+                <div class="personagens-texto-span">
+                    <span id="resumo">Uma jovem artista talentosa contratada para pintar secretamente o retrato de
+                        casamento
+                        de
+                        Héloïse, observando cada detalhe seu durante o dia para registrá-la à noite.</span>
+                </div>
+
             </div>
 
             <button id="proximo" class="seta">&#10095;</button>
@@ -211,19 +217,25 @@
                 funcao: "PINTORA",
                 nome: "Marianne",
                 resumo: "Uma jovem artista talentosa contratada para pintar secretamente o retrato de casamento de Héloïse, observando cada detalhe seu durante o dia para registrá-la à noite.",
-                imagem: "assets/marianne.jpeg"
+                imagem: "assets/personagem-marianne.jpeg"
             },
             {
                 funcao: "MUSA",
                 nome: "Héloïse",
                 resumo: "Uma jovem aristocrata que acabou de deixar o convento e resiste ao casamento arranjado em Milão, recusando-se inicialmente a posar para qualquer pintor.",
-                imagem: "assets/heloise.jpg"
+                imagem: "assets/personagem-heloise.jpeg"
+            },
+            {
+                funcao: "CONDESSA",
+                nome: "La Comtesse",
+                resumo: "Criando...",
+                imagem: "assets/personagem-condessa.jpeg"
             },
             {
                 funcao: "CRIADA",
                 nome: "Sophie",
                 resumo: "A jovem criada da casa na ilha da Bretanha. Entre tarefas domésticas e bordados, cria um laço profundo de cumplicidade e igualdade com Marianne e Héloïse.",
-                imagem: "assets/sophie.jpg"
+                imagem: "assets/personagem-sophie.jpeg"
             }
         ];
 
