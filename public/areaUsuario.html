@@ -20,7 +20,9 @@
 
         <a href="#quiz">QUIZ E DADOS</a>
 
-        <a href="#personagens">ATELIÊ</a>
+        <a href="#pintura">ATELIÊ</a>
+
+        <a href="dashboard/dashboard.html">DASHBOARD</a>
 
         <a href="onePage.html" class="button">SAIR</a>
 
@@ -64,7 +66,7 @@
 
     <section class="quiz" id="quiz">
 
-        <p>EXPERIÊNCIA INTERATIVA · DADOS DA COMUNIDADE</p>
+        <p>QUIZ · DADOS DA COMUNIDADE</p>
         <div class="quiz-titulo">
             <h1>A Percepção do Público</h1>
             <span>50 PARTICIPAÇÕES REGISTRADAS</span>
@@ -74,13 +76,13 @@
             <div class="container">
                 <h4>PERSONAGEM FAVORITA DO PÚBLICO</h4>
                 <span>Héloïse</span>
-                <p>48% dos votos registrados (124 respostas)</p>
+                <p>48% dos votos registrados (28 respostas)</p>
             </div>
 
             <div class="container">
                 <h4>ELEMENTO MAIS MARCANTE DO FILME</h4>
                 <span>O Olhar e o Silêncio</span>
-                <p>41% das escolhas (106 respostas)</p>
+                <p>41% das escolhas (21 respostas)</p>
             </div>
         </div>
 
@@ -100,8 +102,65 @@
 
     </section>
 
-    <section>
-        
+    <section class="pintura" id="pintura">
+
+        <p>ATELIÊ DE MARIANNE</p>
+        <div class="pintura-titulo">
+            <h1>Pinte o Seu Retrato</h1>
+            <span>"Citação"</span>
+        </div>
+
+        <div class="posicao-pintura">
+
+            <div class="pintura-borda">
+
+                <div class="pintura-container">
+
+                    <canvas id="tela_pintura" width="666" height="450"></canvas>
+
+                </div>
+            </div>
+
+            <div class="cores-borda">
+                <div class="cores-container">
+                    <div class="posicao-cores">
+                        <h4>PIGMENTOS</h4>
+
+                        <div class="lista-pigmentos">
+                            <button id="button_petroleo" onclick="mudar_cor('#101B20', 'button_petroleo')"
+                                class="button-pigmento ativo">
+                                <span class="amostra petroleo"></span>
+                                <span>Petróleo</span>
+                            </button>
+
+                            <button id="button_carmin" onclick="mudar_cor('#693D42', 'button_carmin')"
+                                class="button-pigmento">
+                                <span class="amostra carmin"></span>
+                                <span>Carmim</span>
+                            </button>
+
+                            <button id="button_dourado" onclick="mudar_cor('#C4A574', 'button_dourado')"
+                                class="button-pigmento">
+                                <span class="amostra dourado"></span>
+                                <span>Dourado</span>
+                            </button>
+
+                            <button id="button_esmeralda" onclick="mudar_cor('#274E3B', 'button_esmeralda')"
+                                class="button-pigmento">
+                                <span class="amostra esmeralda"></span>
+                                <span>Esmeralda</span>
+                            </button>
+                        </div>
+
+                        <button id="button_borracha" onclick="ativar_borracha('button_borracha')"
+                            class="borracha">Borracha
+                        </button>
+
+                        <button onclick="limpar_tela()" class="button-limpar">LIMPAR TELA</button>
+                    </div>
+                </div>
+            </div>
+
     </section>
 
     <footer class="footer">
@@ -112,5 +171,77 @@
         </div>
     </footer>
 </body>
+
+<script>
+    var tela = document.getElementById('tela_pintura');
+    var pincel = tela.getContext('2d');
+
+    var esta_pintando = false;
+    var cor_atual = '#101B20';
+
+    // Deixa o traço redondo e suave
+    pincel.lineWidth = 4;
+    pincel.lineCap = 'round';
+
+    // Quando aperta o botão do mouse
+    tela.addEventListener('mousedown', function (evento) {
+        esta_pintando = true;
+        pincel.beginPath();
+        pincel.moveTo(evento.offsetX, evento.offsetY);
+    });
+
+    // Quando move o mouse pela tela
+    tela.addEventListener('mousemove', function (evento) {
+        if (esta_pintando == true) {
+            pincel.strokeStyle = cor_atual;
+            pincel.lineTo(evento.offsetX, evento.offsetY);
+            pincel.stroke();
+        }
+    });
+
+    // Quando solta o botão do mouse (ou sai da tela)
+    tela.addEventListener('mouseup', function () {
+        esta_pintando = false;
+    });
+
+    tela.addEventListener('mouseleave', function () {
+        esta_pintando = false;
+    });
+
+    // Funções dos botões
+    function mudar_cor(nova_cor) {
+        cor_atual = nova_cor;
+    }
+
+    function mudar_cor(nova_cor, id_botao) {
+        pincel.globalCompositeOperation = 'source-over'; // Volta a pintar normalmente
+        pincel.lineWidth = 4; // Volta à espessura normal do pincel
+        cor_atual = nova_cor;
+
+        button_petroleo.classList.remove('ativo');
+        button_carmin.classList.remove('ativo');
+        button_dourado.classList.remove('ativo');
+        button_esmeralda.classList.remove('ativo');
+        button_borracha.classList.remove('ativo');
+
+        document.getElementById(id_botao).classList.add('ativo');
+    }
+
+    function ativar_borracha(id_botao) {
+        pincel.globalCompositeOperation = 'destination-out';
+        pincel.lineWidth = 20; // Deixa a borracha mais larga que o pincel
+
+        button_petroleo.classList.remove('ativo');
+        button_carmin.classList.remove('ativo');
+        button_dourado.classList.remove('ativo');
+        button_esmeralda.classList.remove('ativo');
+
+        document.getElementById(id_botao).classList.add('ativo');
+    }
+
+    function limpar_tela() {
+        pincel.clearRect(0, 0, tela.width, tela.height);
+    }
+</script>
 
 </html>

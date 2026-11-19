@@ -93,7 +93,7 @@ body {
 .cenas {
     min-height: 100vh;
     width: 100%;
-    padding: 140px 150px 60px 150px;
+    padding: 120px 150px 60px 150px;
     background-color: #F2EBDD;
     justify-content: center;
     align-items: center;
@@ -320,37 +320,206 @@ body {
 
 }
 
-/*GERAIS --------------------------------------------*/
+/*PINTURA --------------------------------------------*/
 
-.fonte-cursiva {
-    font-family: "Allura", cursive;
-    text-decoration: none;
-    color: white;
-    font-size: 35px;
+.pintura {
+    min-height: 100vh;
+    width: 100%;
+    background-color: #F2EBDD;
+    padding: 120px 150px 60px 150px;
 }
 
-.fonte-cursiva:hover {
-    color: #C4A574;
-}
-
-p {
-    margin: 0;
-}
-
-h1 {
-    margin: 0;
-}
-
-.button {
-    padding: 9px 18px;
-    color: #C4A574;
-    border: 1px solid #C4A574;
-    text-decoration: none;
-    font-family: "Inter", sans-serif;
+.pintura>p {
+    color: #693d42;
     letter-spacing: 3px;
     font-size: 14px;
+}
+
+.pintura-titulo {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px 0px 35px 0px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #c4a57497;
+}
+
+.pintura-titulo h1 {
+    font-family: "Cormorant Garamond", sans-serif;
+    color: #693d42;
+    font-size: 45px;
+    font-weight: 400;
+}
+
+.pintura-titulo span {
+    color: #102d35;
+    font-size: 13px;
     font-weight: 300;
+    letter-spacing: 1px;
+
+}
+
+.posicao-pintura {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    height: 100%;
+}
+
+.pintura-borda {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 65vh;
+    width: 75%;
+    border: 1px solid #c4a57485;
+    background-color: #c4a5745a;
+    border-radius: 3px;
+}
+
+.pintura-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #F2EBDD;
+    z-index: 100;
+    height: 95%;
+    width: 95%;
+}
+
+.cores-borda {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 65vh;
+    width: 25%;
+    border: 1px solid #c4a57485;
+    background-color: #c4a5745a;
+    border-radius: 3px;
+}
+
+.cores-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #F2EBDD;
+    height: 95%;
+    width: 95%;
+}
+
+/*CANVAS/BOTÕES --------------------------------------------*/
+
+/*CANVAS/BOTÕES --------------------------------------------*/
+
+.posicao-cores {
+    width: 85%;
+    height: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.posicao-cores h4 {
+    width: 100%;
+    text-align: center;
+    color: #693D42;
+    letter-spacing: 3px;
+    font-size: 13px;
+    font-weight: 500;
+    margin: 0px 0px 0px 0px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #c4a57485;
+}
+
+.lista-pigmentos {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.button-pigmento {
+    width: 100%;
+    padding: 10px 14px;
     background-color: transparent;
+    border: 1px solid #c4a57485;
+    border-radius: 2px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 14px;
+    cursor: pointer;
+    font-family: "Cormorant Garamond", serif;
+    font-size: 19px;
+    font-weight: 600;
+    color: #101B20;
+}
+
+.button-pigmento:hover {
+    background-color: #c4a57426;
+    border-color: #693D42;
+    transform: translateX(3px);
+    transition: 0.3s;
+}
+
+.ativo {
+    background-color: #c4a57426;
+    border-color: #693D42;
+    transform: translateX(3px);
+}
+
+.amostra {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    border: 1px solid #C4A574;
+}
+
+.petroleo {
+    background-color: #101B20;
+}
+
+.carmin {
+    background-color: #693D42;
+}
+
+.dourado {
+    background-color: #C4A574;
+}
+
+.esmeralda {
+    background-color: #274E3B;
+}
+
+.button-limpar {
+    width: 100%;
+    padding: 10px 16px;
+    background-color: transparent;
+    color: #693D42;
+    border: 1px solid #693D42;
+    border-radius: 2px;
+    font-family: "Inter", sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 2.5px;
+    cursor: pointer;
+}
+
+.button-limpar:hover {
+    background-color: #693D42;
+    color: #F2EBDD;
+    transition: 0.4s;
+}
+
+.borracha {
+    background-color: #F2EBDD;
+    border: 1px dashed #693D42;
+    padding: 9px 18px;
+    cursor: pointer;
 }
 
 /*FOOTER --------------------------------------------*/
@@ -388,4 +557,37 @@ h1 {
     font-family: "Allura", cursive;
     color: #C4A574;
     font-size: 22px;
+}
+
+/*GERAIS --------------------------------------------*/
+
+.fonte-cursiva {
+    font-family: "Allura", cursive;
+    text-decoration: none;
+    color: white;
+    font-size: 35px;
+}
+
+.fonte-cursiva:hover {
+    color: #C4A574;
+}
+
+p {
+    margin: 0;
+}
+
+h1 {
+    margin: 0;
+}
+
+.button {
+    padding: 9px 18px;
+    color: #C4A574;
+    border: 1px solid #C4A574;
+    text-decoration: none;
+    font-family: "Inter", sans-serif;
+    letter-spacing: 3px;
+    font-size: 14px;
+    font-weight: 300;
+    background-color: transparent;
 }
