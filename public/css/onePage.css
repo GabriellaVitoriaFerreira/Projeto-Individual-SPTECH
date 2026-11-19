@@ -80,6 +80,7 @@ body {
 
 .header a:hover {
     color: #C4A574;
+    transition: 0.2s;
 }
 
 .header .button-entrar {
@@ -476,7 +477,7 @@ body {
     background-color: transparent;
     color: #C4A574;
     border: 1px solid #C4A574;
-    transition: 0.3s;
+    transition: 0.5s;
 }
 
 .ancora-botao-vazio {
@@ -493,7 +494,7 @@ body {
     background-color: #C4A574;
     color: #101b20;
     border: none;
-    transition: 0.3s;
+    transition: 0.5s;
 }
 
 
