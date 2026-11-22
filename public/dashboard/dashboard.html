@@ -5,27 +5,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
-    <link rel="stylesheet"
-        href="/css/dashboard.css">
-    <link rel="shortcut icon"
-        href="/assets/chama-favicon.png"
-        type="image/x-icon">
+    <link rel="stylesheet" href="/css/dashboard.css">
+    <link rel="shortcut icon" href="/assets/chama-favicon.png" type="image/x-icon">
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
 </head>
 
 <body>
     <header class="header">
+
         <div class="logo">
-            <a href="/onePage.html"
-                class="fonte-cursiva">portrait</a>
+            <a href="/onePage.html" class="fonte-cursiva">portrait</a>
         </div>
 
-        <a href="/onePage.html">INÍCIO</a>
+        <a href="/areaUsuario.html#cenas">CENAS FAVORITAS</a>
 
-        <!-- <a href="/onePage.html">FILME</a> -->
+        <a href="/areaUsuario.html#quiz">QUIZ</a>
 
-        <a href="/login.html" class="button-entrar">ENTRAR</a>
+        <a href="/areaUsuario.html#pintura">ATELIÊ</a>
 
+        <a href="/dashboard/dashboard.html">DASHBOARD</a>
+
+        <a href="onePage.html" class="button">SAIR</a>
     </header>
 
     <main>
@@ -53,7 +53,8 @@
                 <div class="conteudo-kpi">
                     <h4>MÉDIA DE ACERTOS</h4>
                     <div class="row">
-                        <span>4</span><p>/5</p>
+                        <span>4</span>
+                        <p>/5</p>
                     </div>
                     <p>Conhecimento do Público</p>
                 </div>
@@ -89,10 +90,10 @@
 
     const data = {
         labels: [
-            'Fotografia e direção de arte', 
-            'Construção das personagens', 
-            'Representatividade', 
-            'Narrativa e emoções', 
+            'Fotografia e direção de arte',
+            'Construção das personagens',
+            'Representatividade',
+            'Narrativa e emoções',
             'Simbolismo e memória'
         ],
         datasets: [{

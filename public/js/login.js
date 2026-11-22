@@ -25,7 +25,7 @@ async function entrar() {
                 // Recebe as informações do usuário
                 var usuario = await resposta.json();
 
-                alert("Login realizado com sucesso! Bem-vinda, " + usuario.nome);
+                // alert("Login realizado com sucesso! Bem-vinda, " + usuario.nome);
                 window.location.href = "/areaUsuario.html";
 
             } else if (resposta.status == 403) {

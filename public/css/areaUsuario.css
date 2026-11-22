@@ -131,10 +131,11 @@ body {
 
 }
 
-.borda-imagem-cenas img {
+.borda-imagem-cenas img,
+.borda-imagem-cenas video {
     height: 95%;
     width: 95%;
-    background-position: center;
+    object-fit: cover;
 }
 
 .texto {

@@ -1,0 +1,339 @@
+@import url('https://fonts.googleapis.com/css2?family=Allura&family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    color: #F2EBDD;
+    background-color: #101B20;
+    background-image: linear-gradient(rgba(16, 27, 32, 0.82), rgba(16, 27, 32, 0.92)), url("assets/fundo-piano.jpg");
+    background-size: cover;
+    background-position: center;
+    font-family: "Inter", sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 120px 150px 60px 150px;
+}
+
+::selection {
+    background-color: #C4A574;
+    color: #101B20;
+}
+
+/* HEADER ------------------------------------------- */
+
+.header {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 30px;
+    width: 100%;
+    padding: 15px 150px;
+    color: white;
+    background-color: transparent;
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+    transition: background-color 0.4s ease, padding 0.4s ease;
+}
+
+.header .logo {
+    margin-right: auto;
+}
+
+.header .fonte-cursiva {
+    font-size: 35px;
+    letter-spacing: normal;
+}
+
+.header a {
+    text-decoration: none;
+    color: white;
+    font-weight: 200;
+    letter-spacing: 2px;
+    font-size: 14px;
+}
+
+.header a:hover {
+    color: #C4A574;
+    transition: 0.2s;
+}
+
+.header .button {
+    color: #C4A574;
+}
+
+.header .button:hover {
+    color: white;
+    border: 1px solid white;
+    transition: 0.5s;
+}
+
+/* CORPO DO QUIZ ------------------------------------ */
+
+.div-geral {
+    width: 100%;
+    max-width: 720px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 24px;
+}
+
+.caixa-quiz {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.subtitulo-quiz {
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: #C4A574;
+    text-transform: uppercase;
+    margin-bottom: 18px;
+}
+
+.linha-progresso {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.badge-numero {
+    background-color: #C4A574;
+    color: #101B20;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    padding: 4px 10px;
+}
+
+.traco-progresso {
+    flex: 1;
+    height: 1px;
+    background-color: rgba(196, 165, 116, 0.25);
+}
+
+.titulo-pergunta {
+    font-family: "Cormorant Garamond", serif;
+    font-size: 38px;
+    font-weight: 400;
+    color: #F2EBDD;
+    line-height: 1.2;
+    margin-bottom: 28px;
+}
+
+/* OPÇÕES ------------------------------------------- */
+
+.lista-opcoes {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 32px;
+}
+
+.opcao-linha {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 16px 20px;
+    border: 1px solid rgba(242, 235, 221, 0.15);
+    background-color: rgba(16, 27, 32, 0.55);
+    transition: 0.25s;
+}
+
+.opcao-linha:hover {
+    border-color: #C4A574;
+    background-color: rgba(196, 165, 116, 0.08);
+}
+
+.opcao-linha input[type="radio"] {
+    accent-color: #C4A574;
+    width: 15px;
+    height: 15px;
+    cursor: pointer;
+}
+
+.letra-opcao {
+    font-family: "Cormorant Garamond", serif;
+    font-style: italic;
+    color: #C4A574;
+    font-size: 18px;
+}
+
+.option {
+    flex: 1;
+    font-family: "Cormorant Garamond", serif;
+    font-size: 20px;
+    color: #F2EBDD;
+    cursor: pointer;
+    padding: 2px 8px;
+}
+
+/* CLASSES ADICIONADAS PELO SEU JS ------------------ */
+
+.text-success-with-bg {
+    color: #a8e0b7;
+    background-color: rgba(107, 158, 120, 0.25);
+    border-left: 2px solid #6b9e78;
+}
+
+.text-warning-with-bg {
+    color: #e6c88a;
+    background-color: rgba(196, 165, 116, 0.2);
+    border-left: 2px solid #C4A574;
+}
+
+.text-danger-with-bg {
+    color: #e8a5ab;
+    background-color: rgba(105, 61, 66, 0.45);
+    border-left: 2px solid #a84a53;
+}
+
+.text-new-gray {
+    opacity: 0.45;
+    pointer-events: none;
+}
+
+/* BOTÕES ------------------------------------------- */
+
+.area-botoes {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    z-index: 20;
+}
+
+.btn-outline {
+    padding: 13px 24px;
+    background-color: transparent;
+    border: 1px solid rgba(242, 235, 221, 0.25);
+    color: #F2EBDD;
+    font-family: "Inter", sans-serif;
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: 0.25s;
+}
+
+.btn-outline:hover:not(:disabled) {
+    border-color: #C4A574;
+    color: #C4A574;
+}
+
+.btn-dourado {
+    padding: 13px 28px;
+    background-color: #C4A574;
+    border: 1px solid #C4A574;
+    color: #101B20;
+    font-family: "Inter", sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    text-decoration: none;
+    cursor: pointer;
+    transition: 0.25s;
+}
+
+.btn-dourado:hover:not(:disabled) {
+    background-color: #d4b686;
+}
+
+button:disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+}
+
+/* CAIXA DE PONTUAÇÃO FINAL ------------------------- */
+
+.caixa-pontuacao {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 32px;
+    border: 1px solid rgba(196, 165, 116, 0.35);
+    background-color: rgba(16, 27, 32, 0.85);
+}
+
+.titulo-resultado {
+    font-family: "Cormorant Garamond", serif;
+    font-size: 36px;
+    font-weight: 400;
+    color: #F2EBDD;
+    margin-bottom: 20px;
+}
+
+.resumo-acertos {
+    display: flex;
+    gap: 32px;
+    padding: 14px 0;
+    border-top: 1px solid rgba(196, 165, 116, 0.25);
+    border-bottom: 1px solid rgba(196, 165, 116, 0.25);
+    font-size: 14px;
+    letter-spacing: 1px;
+    margin-bottom: 18px;
+}
+
+.resumo-final {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 24px;
+}
+
+.texto-pontuacao {
+    font-family: "Cormorant Garamond", serif;
+    font-size: 24px;
+    color: #C4A574;
+}
+
+.mensagem-final {
+    font-size: 15px;
+    padding: 12px 16px;
+    line-height: 1.5;
+}
+
+.area-botoes-final {
+    display: flex;
+    gap: 16px;
+}
+
+/* GERAIS ------------------------------------------- */
+
+.fonte-cursiva {
+    font-family: "Allura", cursive;
+    text-decoration: none;
+    color: white;
+    font-size: 35px;
+}
+
+.fonte-cursiva:hover {
+    color: #C4A574;
+}
+
+.button {
+    padding: 9px 18px;
+    color: #C4A574;
+    border: 1px solid #C4A574;
+    text-decoration: none;
+    font-family: "Inter", sans-serif;
+    letter-spacing: 3px;
+    font-size: 14px;
+    font-weight: 300;
+    background-color: transparent;
+}

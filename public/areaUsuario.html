@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
@@ -18,7 +18,7 @@
 
         <a href="#cenas">CENAS FAVORITAS</a>
 
-        <a href="#quiz">QUIZ E DADOS</a>
+        <a href="#quiz">QUIZ</a>
 
         <a href="#pintura">ATELIÊ</a>
 
@@ -40,7 +40,12 @@
 
             <div class="borda-imagem-cenas">
 
-                <img src="" alt="">
+                <video id="cena-video" controls poster="assets/thumb-fogueira.jpg">
+                    <source src="assets/cena-fogueira.mp4" type="video/mp4">
+                    Seu navegador não suporta a reprodução de vídeos.
+                </video>
+
+                <img id="cena-img" src="" alt="" style="display: none;">
 
             </div>
 
@@ -96,7 +101,7 @@
                     Sciamma.
                 </p>
 
-                <a href="" class="botao-quiz">RESPONDER AO QUIZ</a>
+                <a href="quiz/quiz.html" class="botao-quiz">RESPONDER AO QUIZ</a>
             </div>
         </div>
 
@@ -116,7 +121,7 @@
 
                 <div class="pintura-container">
 
-                    <canvas id="tela_pintura" width="666" height="450"></canvas>
+                    <canvas id="tela_pintura" width="847" height="450"></canvas>
 
                 </div>
             </div>
@@ -242,6 +247,82 @@
     function limpar_tela() {
         pincel.clearRect(0, 0, tela.width, tela.height);
     }
+
+    /*VIDEO E IMAGEM DE CENAS --------------------------------------*/
+
+    const cenas = [
+        {
+            ato: "ATO II · CENA FAVORITA",
+            titulo: "O Canto ao Redor da Fogueira",
+            descricao: "O coro feminino entoa 'Non possum fugere' enquanto as chamas iluminam o primeiro olhar direto e recíproco entre Marianne e Héloïse.",
+            video: "assets/cena-fogueira.mp4",
+            poster: "assets/thumb-fogueira.jpg"
+        },
+        {
+            ato: "ATO II · CENA 02",
+            titulo: "Página 28 — O Autorretrato",
+            descricao: "No espelho apoiado sobre o corpo de Héloïse, Marianne desenha a si mesma na página 28 do livro, eternizando a cumplicidade das duas.",
+            imagem: "assets/cena-pagina28.jpeg"
+        },
+        {
+            ato: "ATO III · EPÍLOGO",
+            titulo: "A Sinfonia de Vivaldi",
+            descricao: "No teatro, anos depois, Héloïse ouve o verão das Quatro Estações de Vivaldi atravessando um turbilhão silencioso de lágrimas e memória.",
+            imagem: "assets/cena-vivaldi.jpeg"
+        }
+    ];
+
+    let indiceCenaAtual = 0;
+
+    const buttonAnterior = document.getElementById('cena-anterior');
+    const buttonProximo = document.getElementById('cena-proximo');
+    const videoElement = document.getElementById('cena-video');
+    const imgCenaElement = document.getElementById('cena-img');
+    const atoElement = document.getElementById('cena-ato');
+    const tituloElement = document.getElementById('cena-titulo');
+    const descricaoElement = document.getElementById('cena-descricao');
+
+    function atualizarCena(novoIndice) {
+        const cena = cenas[novoIndice];
+
+        // Sempre pausa o vídeo ao trocar de slide para não continuar tocando escondido
+        videoElement.pause();
+
+        if (cena.video) {
+            // Se for a cena com vídeo: mostra o <video> e esconde a <img>
+            imgCenaElement.style.display = "none";
+            videoElement.style.display = "block";
+            videoElement.src = cena.video;
+            videoElement.poster = cena.poster;
+            videoElement.load();
+        } else {
+            // Se for cena com imagem: esconde o <video> e mostra a <img>
+            videoElement.style.display = "none";
+            imgCenaElement.style.display = "block";
+            imgCenaElement.src = cena.imagem;
+            imgCenaElement.alt = cena.titulo;
+        }
+
+        atoElement.textContent = cena.ato;
+        tituloElement.textContent = cena.titulo;
+        descricaoElement.textContent = cena.descricao;
+    }
+
+    proximo.addEventListener('click', () => {
+        indiceCenaAtual++;
+        if (indiceCenaAtual >= cenas.length) {
+            indiceCenaAtual = 0;
+        }
+        atualizarCena(indiceCenaAtual);
+    });
+
+    anterior.addEventListener('click', () => {
+        indiceCenaAtual--;
+        if (indiceCenaAtual < 0) {
+            indiceCenaAtual = cenas.length - 1;
+        }
+        atualizarCena(indiceCenaAtual);
+    });
 </script>
 
 </html>

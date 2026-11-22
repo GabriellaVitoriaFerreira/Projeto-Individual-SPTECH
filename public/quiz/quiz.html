@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>portrait — Quiz</title>
+    <link rel="stylesheet" href="quiz.css">
+</head>
+
+<body onload="iniciarQuiz()">
+
+    <header class="header">
+
+        <div class="logo">
+            <a href="/onePage.html" class="fonte-cursiva">portrait</a>
+        </div>
+
+        <a href="/areaUsuario.html#cenas">CENAS FAVORITAS</a>
+
+        <a href="/areaUsuario.html#quiz">QUIZ</a>
+
+        <a href="/areaUsuario.html#pintura">ATELIÊ</a>
+
+        <a href="/dashboard/dashboard.html">DASHBOARD</a>
+
+        <a href="onePage.html" class="button">SAIR</a>
+    </header>
+
+    <div id="pontuacaoEJogo" class="div-geral">
+
+        <div id="pontuacao" class="caixa-pontuacao">
+            <span class="subtitulo-quiz">RESULTADO FINAL</span>
+            <h2 class="titulo-resultado">Quiz Concluído</h2>
+
+            <div id="pontuacaoDuranteJogo" class="resumo-acertos">
+                <span>Quantidade de acertos: <span id="spanCertas">0</span></span>
+                <span>Quantidade de erros: <span id="spanErradas">0</span></span>
+            </div>
+
+            <div id="pontuacaoFinalJogo" class="resumo-final">
+                <span id="pontuacaoFinal" class="texto-pontuacao">Pontuação Final:
+                    <span id="spanPontuacaoFinal">***</span>
+                </span>
+                <span id="msgFinal" class="mensagem-final">***</span>
+            </div>
+
+            <div class="area-botoes-final">
+                <button onclick="tentarNovamente()" id="btnTentarNovamente" class="btn-outline" disabled>Tentar
+                    novamente</button>
+                <a href="/dashboard/dashboard.html" class="btn-dourado">Ver Dashboard &rarr;</a>
+            </div>
+        </div>
+
+        <div id="jogo" class="caixa-quiz">
+
+            <span class="subtitulo-quiz">CONHECIMENTO SOBRE A OBRA</span>
+
+            <div id="infoQuestao" class="linha-progresso">
+                <span class="badge-numero">
+                    0<span id="spanNumeroDaQuestaoAtual"></span> / 0<span id="qtdQuestoes"></span>
+                </span>
+                <div class="traco-progresso"></div>
+            </div>
+
+            <div id="perguntaDaQuestaoAtual" class="titulo-pergunta">
+                <span id="spanQuestaoExibida"></span>
+            </div>
+
+            <div id="opcoes" class="lista-opcoes">
+                <span class="opcao-linha">
+                    <input type="radio" id="primeiraOpcao" name="option" class="radio" value="alternativaA" />
+                    <span class="letra-opcao">a.</span>
+                    <label for="primeiraOpcao" class="option" id="labelOpcaoUm"></label>
+                </span>
+                <span class="opcao-linha">
+                    <input type="radio" id="segundaOpcao" name="option" class="radio" value="alternativaB" />
+                    <span class="letra-opcao">b.</span>
+                    <label for="segundaOpcao" class="option" id="labelOpcaoDois"></label>
+                </span>
+                <span class="opcao-linha">
+                    <input type="radio" id="terceiraOpcao" name="option" class="radio" value="alternativaC" />
+                    <span class="letra-opcao">c.</span>
+                    <label for="terceiraOpcao" class="option" id="labelOpcaoTres"></label>
+                </span>
+                <span class="opcao-linha">
+                    <input type="radio" id="quartaOpcao" name="option" class="radio" value="alternativaD" />
+                    <span class="letra-opcao">d.</span>
+                    <label for="quartaOpcao" class="option" id="labelOpcaoQuatro"></label>
+                </span>
+            </div>
+
+            <div id="botoes" class="area-botoes">
+                <button onclick="submeter()" id="btnSubmeter" class="btn-outline">Submeter resposta</button>
+                <button onclick="avancar()" id="btnProx" class="btn-dourado" disabled>Próxima &rarr;</button>
+            </div>
+
+        </div>
+    </div>
+</body>
+
+<script>
+    const listaDeQuestoes = [
+
+        {
+            tipo: "objetiva",
+            pergunta: "Qual a profissão de Marianne",
+            alternativaA: "Musicista",
+            alternativaB: "Pintora",
+            alternativaC: "Escritora",
+            alternativaD: "Costureira",
+            alternativaCorreta: "alternativaB"
+        },
+
+        {
+            tipo: "objetiva",
+            pergunta: "Porque Marianne precisa pintar Héloïse em segredo?",
+            alternativaA: "Héloïse é cega",
+            alternativaB: "Héloïse se recusa a posar",
+            alternativaC: "A Condessa proibiu",
+            alternativaD: "O retrato é um presente surpresa",
+            alternativaCorreta: "alternativaB"
+        },
+
+        {
+            tipo: "objetiva",
+            pergunta: "Qual elemento quase não aparece no filme, valorizando o silêncio",
+            alternativaA: "Diálogos",
+            alternativaB: "Figurinos",
+            alternativaC: "Trilha sonora musical",
+            alternativaD: "Paisagens",
+            alternativaCorreta: "alternativaC"
+        },
+
+        {
+            tipo: "objetiva",
+            pergunta: "Qual mito é lido e discutido pelas personagens?",
+            alternativaA: "Orfeu e Eurídice",
+            alternativaB: "Narciso",
+            alternativaC: "Ícaro",
+            alternativaD: "Prometeu",
+            alternativaCorreta: "alternativaA"
+        },
+
+        {
+            tipo: "objetiva",
+            pergunta: "Qual prêmio o filme recebeu em Cannes, além da queer palm?",
+            alternativaA: "Palma de ouro",
+            alternativaB: "Melhor direção",
+            alternativaC: "Melhor roteiro",
+            alternativaD: "Grande prêmio",
+            alternativaCorreta: "alternativaC"
+        },
+
+        {
+            tipo: "pessoal",
+            pergunta: "Qual elemento da obra mais marcou você?",
+            alternativaA: "Fotografia e Direção de Arte",
+            alternativaB: "Construção das personagens",
+            alternativaC: "Representatividade",
+            alternativaD: "Narrativa e Emoções"
+        },
+
+        {
+            tipo: "pessoal",
+            pergunta: "Qual é a sua personagem favorita da obra?",
+            alternativaA: "Marianne",
+            alternativaB: "Héloïse",
+            alternativaC: "Sophie",
+            alternativaD: "La Comtesse"
+        },
+
+
+
+    ]
+
+    // variáveis globais    
+    let numeroDaQuestaoAtual = 0;
+    let pontuacaoFinal = 0;
+    let tentativaIncorreta = 0;
+    let certas = 0;
+    let erradas = 0;
+    let quantidadeDeQuestoes = listaDeQuestoes.length;
+    let totalObjetivas = 5;
+    // let isUltima = numeroDaQuestaoAtual == quantidadeDeQuestoes-1 ? true : false
+
+    /*Variáveis que serão mandadas para o banco*/
+    let respostasObjetivas = [];
+    let personagemEscolhida = "";
+    let elementoEscolhido = "";
+
+    function iniciarQuiz() {
+        document.getElementById('pontuacao').style.display = "flex"
+        document.getElementById('jogo').style.display = "flex"
+        document.getElementById('pontuacao').style.display = "none";
+
+        document.getElementById('qtdQuestoes').innerHTML = quantidadeDeQuestoes
+
+        preencherHTMLcomQuestaoAtual(0)
+
+        btnSubmeter.disabled = false
+        btnProx.disabled = true
+        // btnConcluir.disabled = true
+        btnTentarNovamente.disabled = true
+    }
+
+    function preencherHTMLcomQuestaoAtual(index) {
+        habilitarAlternativas(true)
+        const questaoAtual = listaDeQuestoes[index]
+        numeroDaQuestaoAtual = index
+        console.log("questaoAtual")
+        console.log(questaoAtual)
+        document.getElementById("spanNumeroDaQuestaoAtual").innerHTML = Number(index) + 1 // ajustando porque o index começa em 0
+        document.getElementById("spanQuestaoExibida").innerHTML = questaoAtual.pergunta;
+        document.getElementById("labelOpcaoUm").innerHTML = questaoAtual.alternativaA;
+        document.getElementById("labelOpcaoDois").innerHTML = questaoAtual.alternativaB;
+        document.getElementById("labelOpcaoTres").innerHTML = questaoAtual.alternativaC;
+        document.getElementById("labelOpcaoQuatro").innerHTML = questaoAtual.alternativaD;
+    }
+
+    function submeter() {
+        const options = document.getElementsByName("option"); // recupera alternativas no html
+
+        let hasChecked = false
+        for (let i = 0; i < options.length; i++) {
+            if (options[i].checked) {
+                hasChecked = true
+                break
+            }
+        }
+
+        if (!hasChecked) {
+            alert("Não há alternativas escolhidas. Escolha uma opção.")
+        } else {
+            btnSubmeter.disabled = true
+            btnProx.disabled = false
+
+            habilitarAlternativas(false)
+
+            checarResposta()
+        }
+    }
+
+    function habilitarAlternativas(trueOrFalse) {
+        let opcaoEscolhida = trueOrFalse ? false : true
+
+        primeiraOpcao.disabled = opcaoEscolhida
+        segundaOpcao.disabled = opcaoEscolhida
+        terceiraOpcao.disabled = opcaoEscolhida
+        quartaOpcao.disabled = opcaoEscolhida
+
+    }
+
+    function avancar() {
+        btnProx.disabled = true
+        btnSubmeter.disabled = false
+
+        desmarcarRadioButtons()
+
+        if (numeroDaQuestaoAtual < quantidadeDeQuestoes) {
+            preencherHTMLcomQuestaoAtual(numeroDaQuestaoAtual)
+        } else {
+            finalizarJogo()
+        }
+        limparCoresBackgroundOpcoes()
+    }
+
+    function tentarNovamente() {
+        // atualiza a página
+        window.location.reload()
+    }
+
+    function checarResposta() {
+        const questaoAtual = listaDeQuestoes[numeroDaQuestaoAtual];
+        const options = document.getElementsByName("option");
+
+        // Tratamento para perguntas pessoais (sem certo/errado)
+        if (questaoAtual.tipo === "pessoal") {
+            options.forEach((option) => {
+                if (option.checked) {
+                    const textoEscolhido = document.getElementById(option.labels[0].id).innerHTML;
+
+                    // Verifica se é a penúltima ou última questão para salvar na variável certa
+                    if (numeroDaQuestaoAtual === 5) {
+                        elementoEscolhido = textoEscolhido;
+                    } else if (numeroDaQuestaoAtual === 6) {
+                        personagemEscolhida = textoEscolhido;
+                    }
+                }
+            });
+            numeroDaQuestaoAtual++;
+            return; // Interrompe aqui para não contar erro
+        }
+
+        const respostaQuestaoAtual = questaoAtual.alternativaCorreta;
+        let alternativaCorreta = null;
+
+        options.forEach((option) => {
+            if (option.value === respostaQuestaoAtual) {
+                alternativaCorreta = option.labels[0].id;
+            }
+        });
+
+        options.forEach((option) => {
+            if (option.checked && option.value === respostaQuestaoAtual) {
+                document.getElementById(alternativaCorreta).classList.add("text-success-with-bg");
+                pontuacaoFinal++;
+                certas++;
+                respostasObjetivas.push(1); // Registra acerto
+                document.getElementById("spanCertas").innerHTML = certas;
+                numeroDaQuestaoAtual++;
+            } else if (option.checked && option.value !== respostaQuestaoAtual) {
+                const wrongLabelId = option.labels[0].id;
+                document.getElementById(wrongLabelId).classList.add("text-danger-with-bg");
+                document.getElementById(alternativaCorreta).classList.add("text-success-with-bg");
+                erradas++;
+                respostasObjetivas.push(0); // Registra erro
+                document.getElementById("spanErradas").innerHTML = erradas;
+                numeroDaQuestaoAtual++;
+            }
+        });
+    }
+
+    function limparCoresBackgroundOpcoes() {
+        const options = document.getElementsByName("option");
+        options.forEach((option) => {
+            document.getElementById(option.labels[0].id).classList.remove("text-danger-with-bg")
+            document.getElementById(option.labels[0].id).classList.remove("text-success-with-bg")
+        })
+    }
+
+    function desmarcarRadioButtons() {
+        const options = document.getElementsByName("option");
+        for (let i = 0; i < options.length; i++) {
+            options[i].checked = false;
+        }
+    }
+
+    function finalizarJogo() {
+        let textoParaMensagemFinal = null
+        let classComCoresParaMensagemFinal = null
+        const porcentagemFinalDeAcertos = pontuacaoFinal / totalObjetivas
+
+        if (porcentagemFinalDeAcertos <= 0.3) {
+            textoParaMensagemFinal = "Parece que você não estudou..."
+            classComCoresParaMensagemFinal = "text-danger-with-bg"
+        }
+        else if (porcentagemFinalDeAcertos > 0.3 && porcentagemFinalDeAcertos < 0.9) {
+            textoParaMensagemFinal = "Pode melhorar na próxima, hein!"
+            classComCoresParaMensagemFinal = "text-warning-with-bg"
+        }
+        else if (porcentagemFinalDeAcertos >= 0.9) {
+            textoParaMensagemFinal = "Uau, parabéns!"
+            classComCoresParaMensagemFinal = "text-success-with-bg"
+        }
+
+        textoParaMensagemFinal += "<br> Você acertou " + Math.round((porcentagemFinalDeAcertos) * 100) + "% das questões."
+
+
+        document.getElementById('msgFinal').innerHTML = textoParaMensagemFinal
+        document.getElementById('msgFinal').classList.add(classComCoresParaMensagemFinal)
+        document.getElementById('spanPontuacaoFinal').innerHTML = pontuacaoFinal
+        document.getElementById('pontuacao').style.display = "flex";
+        document.getElementById('pontuacao').style.display = "flex";
+        document.getElementById('jogo').style.display = "none";
+
+        // document.getElementById('jogo').classList.add("text-new-gray")
+
+        btnProx.disabled = true
+        btnSubmeter.disabled = true
+        // btnConcluir.disabled = true
+        btnTentarNovamente.disabled = false
+
+    }
+
+    function registrarNoBanco() {
+        const idUsuario = sessionStorage.ID_USUARIO;
+        if (!idUsuario) return;
+
+        fetch("/quiz/registrar", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                idUsuarioServer: idUsuario,
+                q1Server: respostasObjetivas[0],
+                q2Server: respostasObjetivas[1],
+                q3Server: respostasObjetivas[2],
+                q4Server: respostasObjetivas[3],
+                q5Server: respostasObjetivas[4],
+                pontuacaoServer: pontuacaoFinal,
+                personagemServer: personagemEscolhida,
+                elementoServer: elementoEscolhido
+            })
+        })
+            .then(res => {
+                if (res.ok) console.log("Salvo no MySQL com sucesso!");
+            })
+            .catch(erro => console.error("Erro ao enviar:", erro));
+    }
+</script>
+
+</html>

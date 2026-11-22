@@ -17,6 +17,12 @@ body {
     box-sizing: border-box;
 }
 
+::selection {
+    background-color: #C4A574;
+    color: white;
+    /* Estilo da seleção de texto (destaque) */
+}
+
 /*HEADER ---------------------------*/
 
 .header {
@@ -40,11 +46,6 @@ body {
 .header .fonte-cursiva {
     font-size: 35px;
     letter-spacing: normal;
-    color: #C4A574;
-}
-
-.header .fonte-cursiva:hover {
-    color: white;
 }
 
 .header a {
@@ -57,13 +58,14 @@ body {
 
 .header a:hover {
     color: #C4A574;
+    transition: 0.2s;
 }
 
-.header .button-entrar {
+.header .button {
     color: #C4A574;
 }
 
-.header .button-entrar:hover {
+.header .button:hover {
     color: white;
     border: 1px solid white;
     transition: 0.5s;
@@ -185,7 +187,7 @@ main {
     color: #C4A574;
 }
 
-.button-entrar {
+.button {
     padding: 9px 18px;
     color: #C4A574;
     border: 1px solid #C4A574;
