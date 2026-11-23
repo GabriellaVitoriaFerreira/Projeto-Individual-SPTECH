@@ -7,4 +7,8 @@ router.post("/registrar", function (req, res) {
     quizController.registrar(req, res);
 });
 
+router.get("/dados-dashboard", function (req, res) {
+    quizController.obterDadosDashboard(req, res);
+});
+
 module.exports = router;

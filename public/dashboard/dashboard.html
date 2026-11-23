@@ -10,7 +10,7 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
 </head>
 
-<body>
+<body onload="carregarDashboard()">
     <header class="header">
 
         <div class="logo">
@@ -42,7 +42,7 @@
 
                 <div class="conteudo-kpi">
                     <h4>PARTICIPAÇÕES NO QUIZ</h4>
-                    <span>50</span>
+                    <span id="kpi-participacoes">50</span>
                     <p>Registros</p>
                 </div>
 
@@ -53,7 +53,7 @@
                 <div class="conteudo-kpi">
                     <h4>MÉDIA DE ACERTOS</h4>
                     <div class="row">
-                        <span>4</span>
+                        <span id="kpi-media">4</span>
                         <p>/5</p>
                     </div>
                     <p>Conhecimento do Público</p>
@@ -65,7 +65,7 @@
 
                 <div class="conteudo-kpi">
                     <h4>PERSONAGEM DESTAQUE</h4>
-                    <span>Heloise</span>
+                    <span id="kpi-personagem">Heloise</span>
                     <p>Preferência do público</p>
                 </div>
 
@@ -76,7 +76,7 @@
         <div class="grafico">
             <div class="titulo-grafico">
                 <h3>O que mais marcou o público na obra?</h3>
-                <p>Votação sobre elementos marcantes (Total: 50 votos)</p>
+                <p id="subtitulo-grafico">Votação sobre elementos marcantes (Total: 0 votos)</p>
             </div>
             <canvas id="myChart"></canvas>
         </div>
@@ -85,78 +85,123 @@
 </body>
 
 <script>
-
-    const ctx = document.getElementById('myChart');
-
-    const data = {
-        labels: [
-            'Fotografia e direção de arte',
-            'Construção das personagens',
-            'Representatividade',
-            'Narrativa e emoções',
-            'Simbolismo e memória'
-        ],
-        datasets: [{
-            axis: 'y',
-            label: 'Votos',
-            data: [16, 12, 11, 7, 4],
-            fill: false,
-            backgroundColor: [
-                'rgba(196, 165, 116, 0.7)',
-                'rgba(196, 165, 116, 0.4)',
-                'rgba(138, 77, 85, 0.7)',
-                'rgba(120, 130, 110, 0.6)',
-                'rgba(90, 120, 100, 0.6)'
-            ],
-            borderColor: [
-                'rgb(196, 165, 116)',
-                'rgb(196, 165, 116)',
-                'rgb(138, 77, 85)',
-                'rgb(120, 130, 110)',
-                'rgb(90, 120, 100)'
-            ],
-            borderWidth: 1
-        }]
-    };
-
-    const config = {
-        type: 'bar',
-        data: data,
-        options: {
-            indexAxis: 'y',
-            responsive: true,
-            maintainAspectRatio: false,
-            plugins: {
-                legend: {
-                    display: false // Esconde a legenda superior
+    function carregarDashboard() {
+        fetch("/quiz/dados-dashboard")
+            .then(function (resposta) {
+                if (resposta.ok) {
+                    return resposta.json();
+                } else {
+                    throw "Erro ao buscar dados da dashboard!";
                 }
-            },
-            scales: {
-                x: {
-                    grid: {
-                        color: 'rgba(255, 255, 255, 0.05)'
-                    },
-                    ticks: {
-                        color: '#ffffff'
+            })
+            .then(function (dados) {
+                console.log("Dados reais recebidos do MySQL:", dados);
+
+                // 1. Preenche os KPIs superiores
+                const totalParticipacoes = dados.kpis.total_participacoes;
+                const mediaAcertos = dados.kpis.media_acertos;
+
+                document.getElementById("kpi-participacoes").innerHTML = totalParticipacoes;
+                document.getElementById("kpi-media").innerHTML = mediaAcertos;
+                document.getElementById("subtitulo-grafico").innerHTML = `Votação sobre elementos marcantes (Total: ${totalParticipacoes} votos)`;
+
+                // 2. Preenche a Personagem Destaque (o 1º lugar do ranking retornado pelo ORDER BY DESC)
+                if (dados.personagens.length > 0) {
+                    document.getElementById("kpi-personagem").innerHTML = dados.personagens[0].personagem_favorita;
+                } else {
+                    document.getElementById("kpi-personagem").innerHTML = "Sem votos";
+                }
+
+                // 3. Monta os dados reais do gráfico horizontal
+                const labelsGrafico = [
+                    'Fotografia e Direção de Arte',
+                    'Construção das personagens',
+                    'Representatividade',
+                    'Narrativa e Emoções'
+                ];
+
+                // Para cada label do gráfico, procura o total_votos correspondente vindo do banco
+                const votosReais = labelsGrafico.map((label) => {
+                    const encontrado = dados.elementos.find(
+                        (item) => item.elemento_marcante.toLowerCase() === label.toLowerCase()
+                    );
+                    return encontrado ? encontrado.total_votos : 0;
+                });
+
+                // 4. Desenha o gráfico com os dados do banco
+                renderizarGrafico(labelsGrafico, votosReais);
+            })
+            .catch(function (erro) {
+                console.error("Erro ao carregar dashboard:", erro);
+            });
+    }
+
+    function renderizarGrafico(labels, dadosVotos) {
+        const ctx = document.getElementById('myChart');
+
+        const data = {
+            labels: labels,
+            datasets: [{
+                axis: 'y',
+                label: 'Votos',
+                data: dadosVotos,
+                fill: false,
+                backgroundColor: [
+                    'rgba(196, 165, 116, 0.7)',
+                    'rgba(196, 165, 116, 0.4)',
+                    'rgba(138, 77, 85, 0.7)',
+                    'rgba(120, 130, 110, 0.6)'
+                ],
+                borderColor: [
+                    'rgb(196, 165, 116)',
+                    'rgb(196, 165, 116)',
+                    'rgb(138, 77, 85)',
+                    'rgb(120, 130, 110)'
+                ],
+                borderWidth: 1
+            }]
+        };
+
+        const config = {
+            type: 'bar',
+            data: data,
+            options: {
+                indexAxis: 'y',
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: false
                     }
                 },
-                y: {
-                    grid: {
-                        display: false // Remove as linhas de grade verticais
+                scales: {
+                    x: {
+                        beginAtZero: true,
+                        ticks: {
+                            color: '#ffffff',
+                            stepSize: 1 // Garante números inteiros no eixo de votos (0, 1, 2...)
+                        },
+                        grid: {
+                            color: 'rgba(255, 255, 255, 0.05)'
+                        }
                     },
-                    ticks: {
-                        color: '#ffffff',
-                        font: {
-                            size: 13
+                    y: {
+                        grid: {
+                            display: false
+                        },
+                        ticks: {
+                            color: '#ffffff',
+                            font: {
+                                size: 13
+                            }
                         }
                     }
                 }
             }
-        }
-    };
+        };
 
-    const myChart = new Chart(ctx, config);
-
+        new Chart(ctx, config);
+    }
 </script>
 
 

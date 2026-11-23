@@ -27,6 +27,27 @@ function registrar(req, res) {
     }
 }
 
+function obterDadosDashboard(req, res) {
+    Promise.all([
+        quizModel.buscarKpis(),
+        quizModel.buscarAcertosPorQuestao(),
+        quizModel.buscarRankingPersonagens(),
+        quizModel.buscarRankingElementos()
+    ])
+    .then(function ([kpis, acertosQuestoes, personagens, elementos]) {
+        res.status(200).json({
+            kpis: kpis[0],
+            acertosQuestoes: acertosQuestoes[0],
+            personagens: personagens,
+            elementos: elementos
+        });
+    })
+    .catch(function (erro) {
+        console.log("Erro ao buscar dados da dashboard:", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
 module.exports = {
-    registrar
+    registrar, obterDadosDashboard
 };
