@@ -9,7 +9,7 @@
 body {
     color: #F2EBDD;
     background-color: #101B20;
-    background-image: linear-gradient(rgba(16, 27, 32, 0.82), rgba(16, 27, 32, 0.92)), url("assets/fundo-piano.jpg");
+    background-image: (rgba(16, 27, 32, 0.82), rgba(16, 27, 32, 0.92));
     background-size: cover;
     background-position: center;
     font-family: "Inter", sans-serif;

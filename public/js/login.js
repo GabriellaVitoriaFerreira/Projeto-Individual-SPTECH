@@ -25,6 +25,11 @@ async function entrar() {
                 // Recebe as informações do usuário
                 var usuario = await resposta.json();
 
+                // Salva os dados na sessão do navegador antes de trocar de página
+                sessionStorage.EMAIL_USUARIO = usuario.email;
+                sessionStorage.NOME_USUARIO = usuario.nome;
+                sessionStorage.ID_USUARIO = usuario.id;
+
                 // alert("Login realizado com sucesso! Bem-vinda, " + usuario.nome);
                 window.location.href = "/areaUsuario.html";
 

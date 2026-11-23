@@ -40,8 +40,8 @@
 
             <div class="borda-imagem-cenas">
 
-                <video id="cena-video" controls poster="assets/thumb-fogueira.jpg">
-                    <source src="assets/cena-fogueira.mp4" type="video/mp4">
+                <video id="cena-video" src="assets/video/Retrato De Uma Jovem Em Chamas (2019).mp4" controls>
+                    <!-- <source src="assets/video/Retrato De Uma Jovem Em Chamas (2019).mp4" type="video/mp4"> -->
                     Seu navegador não suporta a reprodução de vídeos.
                 </video>
 
@@ -50,15 +50,16 @@
             </div>
 
             <div class="texto">
-                <h3>ATO II - A FOGUEIRA E A RECIPROCIDADE</h3>
-                <h2>O Canto ao Redor da Fogueira</h2>
+                <h3 id="cena-ato">ATO II - A FOGUEIRA E A RECIPROCIDADE</h3>
+                <h2 id="cena-titulo">O Canto ao Redor da Fogueira</h2>
 
-                <span>Citação</span><br><br>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit<br>Id dolorem nihil exercitationem,
-                    necessitatibus dicta odit quidem pariatur amet <br>facilis, dignissimos voluptatem similique,
-                    eos
-                    libero<br> enim mollitia ut? Dicta, cum deleniti.
+                <p id="cena-descricao">
+                    O coro feminino entoa 'Non possum fugere' enquanto as chamas iluminam o primeiro
+                    olhar direto e recíproco entre Marianne e Héloïse. <br><br> A cena é completamente hipnótica e
+                    arrepiante. Como o filme é marcado pela ausência quase total de trilha sonora, ouvir a música ecoar
+                    após tanto silêncio torna o momento ainda mais magnífico. O contraste entre o canto crescente e a
+                    troca de olhares entre Marianne e Héloïse cria uma atmosfera de libertação e desejo contido, fazendo
+                    quem assiste sentir a intensidade magnética desse encontro antes mesmo de qualquer toque.
                 </p>
 
             </div>
@@ -254,21 +255,20 @@
         {
             ato: "ATO II · CENA FAVORITA",
             titulo: "O Canto ao Redor da Fogueira",
-            descricao: "O coro feminino entoa 'Non possum fugere' enquanto as chamas iluminam o primeiro olhar direto e recíproco entre Marianne e Héloïse.",
-            video: "assets/cena-fogueira.mp4",
-            poster: "assets/thumb-fogueira.jpg"
+            descricao: "O coro feminino entoa 'Non possum fugere' enquanto as chamas iluminam o primeiro olhar direto e recíproco entre Marianne e Héloïse. <br><br> A cena é completamente hipnótica e arrepiante. Como o filme é marcado pela ausência quase total de trilha sonora, ouvir a música ecoar após tanto silêncio torna o momento ainda mais magnífico. O contraste entre o canto crescente e a troca de olhares entre Marianne e Héloïse cria uma atmosfera de libertação e desejo contido, fazendo quem assiste sentir a intensidade magnética desse encontro antes mesmo de qualquer toque.",
+            video: "assets/video/Retrato De Uma Jovem Em Chamas (2019).mp4"
         },
         {
-            ato: "ATO II · CENA 02",
-            titulo: "Página 28 — O Autorretrato",
-            descricao: "No espelho apoiado sobre o corpo de Héloïse, Marianne desenha a si mesma na página 28 do livro, eternizando a cumplicidade das duas.",
-            imagem: "assets/cena-pagina28.jpeg"
+            ato: "ATO III · UM NOVO",
+            titulo: "Página 28 ",
+            descricao: "Anos após a despedida, em uma exposição em Roma, Marianne reencontra Héloïse através de uma nova pintura. Ao lado de sua filha, Héloïse posa com serenidade, mas um detalhe sutil transforma a obra em uma mensagem silenciosa: entre seus dedos, o livro permanece aberto na página 28, a mesma onde Marianne havia desenhado seu autorretrato. <br><br> A cena é comovente e transforma o peso da separação em cumplicidade eterna, revelando que, mesmo à distância e com o passar do tempo, Héloïse nunca esqueceu de Marianne.",
+            imagem: "assets/cena-retrato-roma.jpg"
         },
         {
-            ato: "ATO III · EPÍLOGO",
+            ato: "ATO III · ORQUESTRA",
             titulo: "A Sinfonia de Vivaldi",
-            descricao: "No teatro, anos depois, Héloïse ouve o verão das Quatro Estações de Vivaldi atravessando um turbilhão silencioso de lágrimas e memória.",
-            imagem: "assets/cena-vivaldi.jpeg"
+            descricao: "Em um teatro, anos após a despedida, Héloïse ouve a orquestra tocar a música mencionada e tocada por Marianne. Sem saber que está sendo observada de outro camarote, ela atravessa um turbilhão silencioso de lágrimas e memória à medida que os violinos ganham intensidade. <br><br> A cena provoca uma melancólica comoção. Depois de um filme inteiro marcado pelo silêncio e pela contenção, a explosão dos violinos rompe todas as barreiras emocionais de uma vez. Acompanhar o rosto de Héloïse em plano contínuo faz quem assiste sentir o peso de todas as lembranças guardadas, transformando aquele choro solitário em uma prova viva de que o amor e a arte permanecem intactos mesmo após anos de distância." ,
+            imagem: "assets/cena-final.jpg"
         }
     ];
 
@@ -293,7 +293,6 @@
             imgCenaElement.style.display = "none";
             videoElement.style.display = "block";
             videoElement.src = cena.video;
-            videoElement.poster = cena.poster;
             videoElement.load();
         } else {
             // Se for cena com imagem: esconde o <video> e mostra a <img>
@@ -305,7 +304,7 @@
 
         atoElement.textContent = cena.ato;
         tituloElement.textContent = cena.titulo;
-        descricaoElement.textContent = cena.descricao;
+        descricaoElement.innerHTML = cena.descricao;
     }
 
     proximo.addEventListener('click', () => {
