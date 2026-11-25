@@ -41,9 +41,9 @@
             <div class="container-kpi">
 
                 <div class="conteudo-kpi">
-                    <h4>PARTICIPAÇÕES NO QUIZ</h4>
+                    <h2>PARTICIPAÇÕES NO QUIZ</h2>
                     <span id="kpi-participacoes">50</span>
-                    <p>Registros</p>
+                    <h4>Registros</h4>
                 </div>
 
             </div>
@@ -51,12 +51,12 @@
             <div class="container-kpi">
 
                 <div class="conteudo-kpi">
-                    <h4>MÉDIA DE ACERTOS</h4>
+                    <h2>MÉDIA DE ACERTOS</h2>
                     <div class="row">
                         <span id="kpi-media">4</span>
                         <p>/5</p>
                     </div>
-                    <p>Conhecimento do Público</p>
+                    <h4>Conhecimento do Público</h4>
                 </div>
 
             </div>
@@ -64,9 +64,9 @@
             <div class="container-kpi">
 
                 <div class="conteudo-kpi">
-                    <h4>PERSONAGEM DESTAQUE</h4>
+                    <h2>PERSONAGEM DESTAQUE</h2>
                     <span id="kpi-personagem">Heloise</span>
-                    <p>Preferência do público</p>
+                    <h4 id="kpi-porcentagem-personagem">0% de preferência do público</h4>
                 </div>
 
             </div>
@@ -75,7 +75,7 @@
 
         <div class="grafico">
             <div class="titulo-grafico">
-                <h3>O que mais marcou o público na obra?</h3>
+                <h3>O que mais marcou o público na obra</h3>
                 <p id="subtitulo-grafico">Votação sobre elementos marcantes (Total: 0 votos)</p>
             </div>
             <canvas id="myChart"></canvas>
@@ -107,9 +107,12 @@
 
                 // 2. Preenche a Personagem Destaque (o 1º lugar do ranking retornado pelo ORDER BY DESC)
                 if (dados.personagens.length > 0) {
-                    document.getElementById("kpi-personagem").innerHTML = dados.personagens[0].personagem_favorita;
+                    const topPersonagem = dados.personagens[0];
+                    document.getElementById("kpi-personagem").innerHTML = topPersonagem.personagem_favorita;
+                    document.getElementById("kpi-porcentagem-personagem").innerHTML = `<span class="porcentagem-dourada">${topPersonagem.porcentagem}%</span> de preferência do público`;
                 } else {
                     document.getElementById("kpi-personagem").innerHTML = "Sem votos";
+                    document.getElementById("kpi-porcentagem-personagem").innerHTML = "-";
                 }
 
                 // 3. Monta os dados reais do gráfico horizontal

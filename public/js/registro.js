@@ -4,12 +4,16 @@
     let email = ipt_email.value;
     let senha = ipt_senha.value;
     let senha_confirmar = ipt_senha_confirmar.value;
+    let posArroba = email.indexOf("@");
 
     if (nome == "" || email == "" || senha == "" || senha_confirmar == "") {
         alert("Preencha todos os campos");
     }
     else if (senha != senha_confirmar) {
         alert("As senhas não coincidem. Tente Novamente!")
+    }
+    else if(posArroba <= 0){
+        alert("O email precisa ter @ para ser cadastrado")
     }
     else {
         try {

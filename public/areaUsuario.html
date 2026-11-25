@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="css/areaUsuario.css">
 </head>
 
-<body>
+<body onload="carregarHistoricoQuiz()">
     <header class="header">
 
         <div class="logo">
@@ -75,20 +75,20 @@
         <p>QUIZ · DADOS DA COMUNIDADE</p>
         <div class="quiz-titulo">
             <h1>A Percepção do Público</h1>
-            <span>50 PARTICIPAÇÕES REGISTRADAS</span>
+            <span id="qtd-tentativas-usuario">0 PARTICIPAÇÕES REGISTRADAS</span>
         </div>
 
         <div class="row-containers">
             <div class="container">
-                <h4>PERSONAGEM FAVORITA DO PÚBLICO</h4>
-                <span>Héloïse</span>
-                <p>48% dos votos registrados (28 respostas)</p>
+                <h4>SEU MELHOR DESEMPENHO</h4>
+                <span id="melhor-pontuacao-usuario">Ainda não realizado</span>
+                <p id="aproveitamento-usuario">Responda ao quiz para registrar sua pontuação</p>
             </div>
 
             <div class="container">
-                <h4>ELEMENTO MAIS MARCANTE DO FILME</h4>
-                <span>O Olhar e o Silêncio</span>
-                <p>41% das escolhas (21 respostas)</p>
+                <h4>SUA LEITURA REGISTRADA</h4>
+                <span id="ultima-leitura-usuario">—</span>
+                <h3 id="subtitulo-leitura-usuario">Suas escolhas pessoais aparecerão aqui</h3>
             </div>
         </div>
 
@@ -267,7 +267,7 @@
         {
             ato: "ATO III · ORQUESTRA",
             titulo: "A Sinfonia de Vivaldi",
-            descricao: "Em um teatro, anos após a despedida, Héloïse ouve a orquestra tocar a música mencionada e tocada por Marianne. Sem saber que está sendo observada de outro camarote, ela atravessa um turbilhão silencioso de lágrimas e memória à medida que os violinos ganham intensidade. <br><br> A cena provoca uma melancólica comoção. Depois de um filme inteiro marcado pelo silêncio e pela contenção, a explosão dos violinos rompe todas as barreiras emocionais de uma vez. Acompanhar o rosto de Héloïse em plano contínuo faz quem assiste sentir o peso de todas as lembranças guardadas, transformando aquele choro solitário em uma prova viva de que o amor e a arte permanecem intactos mesmo após anos de distância." ,
+            descricao: "Em um teatro, anos após a despedida, Héloïse ouve a orquestra tocar a música mencionada e tocada por Marianne. Sem saber que está sendo observada de outro camarote, ela atravessa um turbilhão silencioso de lágrimas e memória à medida que os violinos ganham intensidade. <br><br> A cena provoca uma melancólica comoção. Depois de um filme inteiro marcado pelo silêncio e pela contenção, a explosão dos violinos rompe todas as barreiras emocionais de uma vez. Acompanhar o rosto de Héloïse em plano contínuo faz quem assiste sentir o peso de todas as lembranças guardadas, transformando aquele choro solitário em uma prova viva de que o amor e a arte permanecem intactos mesmo após anos de distância.",
             imagem: "assets/cena-final.jpg"
         }
     ];
@@ -322,6 +322,48 @@
         }
         atualizarCena(indiceCenaAtual);
     });
+
+    function carregarHistoricoQuiz() {
+    const idUsuario = sessionStorage.ID_USUARIO;
+
+    if (!idUsuario) {
+        console.warn("Usuário não logado no sessionStorage.");
+        return;
+    }
+
+    fetch(`/quiz/historico/${idUsuario}`)
+        .then(function (resposta) {
+            if (resposta.ok) {
+                return resposta.json();
+            } else {
+                throw "Erro ao buscar histórico do usuário.";
+            }
+        })
+        .then(function (dados) {
+            if (dados.total_tentativas > 0) {
+                const porcentagem = Math.round((dados.melhor_pontuacao / 5) * 100);
+
+                document.getElementById("qtd-tentativas-usuario").innerHTML = 
+                    `${dados.total_tentativas} ${dados.total_tentativas === 1 ? 'TENTATIVA REGISTRADA' : 'TENTATIVAS REGISTRADAS'}`;
+
+                document.getElementById("melhor-pontuacao-usuario").innerHTML = 
+                    `${dados.melhor_pontuacao} / 5 acertos`;
+
+                document.getElementById("aproveitamento-usuario").innerHTML = 
+                    `${porcentagem}% de aproveitamento nas questões objetivas`;
+
+                document.getElementById("ultima-leitura-usuario").innerHTML = 
+                    `${dados.ultima_personagem}`;
+
+                document.getElementById("subtitulo-leitura-usuario").innerHTML = 
+                    `Elemento marcante: ${dados.ultimo_elemento}`;
+            }
+        })
+        .catch(function (erro) {
+            console.error(erro);
+        });
+}
+
 </script>
 
 </html>

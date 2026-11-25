@@ -48,6 +48,32 @@ function obterDadosDashboard(req, res) {
     });
 }
 
+function obterHistoricoUsuario(req, res) {
+    var idUsuario = req.params.idUsuario;
+
+    if (idUsuario == undefined) {
+        res.status(400).send("O idUsuario está undefined!");
+    } else {
+        quizModel.buscarHistoricoUsuario(idUsuario)
+            .then(function (resultado) {
+                if (resultado.length > 0) {
+                    res.status(200).json(resultado[0]);
+                } else {
+                    res.status(200).json({
+                        total_tentativas: 0,
+                        melhor_pontuacao: 0,
+                        ultima_personagem: null,
+                        ultimo_elemento: null
+                    });
+                }
+            })
+            .catch(function (erro) {
+                console.log("Erro ao buscar histórico do usuário:", erro.sqlMessage);
+                res.status(500).json(erro.sqlMessage);
+            });
+    }
+}
+
 module.exports = {
-    registrar, obterDadosDashboard
+    registrar, obterDadosDashboard, obterHistoricoUsuario
 };

@@ -11,4 +11,8 @@ router.get("/dados-dashboard", function (req, res) {
     quizController.obterDadosDashboard(req, res);
 });
 
+router.get("/historico/:idUsuario", function (req, res) {
+    quizController.obterHistoricoUsuario(req, res);
+});
+
 module.exports = router;

@@ -70,6 +70,21 @@ function buscarRankingElementos() {
     return database.executar(instrucaoSql);
 }
 
+function buscarHistoricoUsuario(idUsuario) {
+    var instrucaoSql = `
+        SELECT 
+            (SELECT COUNT(*) FROM quiz_resposta WHERE fk_usuario = ${idUsuario}) AS total_tentativas,
+            (SELECT IFNULL(MAX(pontuacao), 0) FROM quiz_resposta WHERE fk_usuario = ${idUsuario}) AS melhor_pontuacao,
+            personagem_favorita AS ultima_personagem,
+            elemento_marcante AS ultimo_elemento
+        FROM quiz_resposta
+        WHERE fk_usuario = ${idUsuario}
+        ORDER BY id DESC
+        LIMIT 1;
+    `;
+    return database.executar(instrucaoSql);
+}
+
 module.exports = {
-    registrar, buscarKpis, buscarAcertosPorQuestao, buscarRankingPersonagens, buscarRankingElementos
+    registrar, buscarKpis, buscarAcertosPorQuestao, buscarRankingPersonagens, buscarRankingElementos, buscarHistoricoUsuario
 };

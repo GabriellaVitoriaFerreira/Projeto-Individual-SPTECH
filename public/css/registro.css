@@ -89,17 +89,16 @@ body {
     object-position: center top;
 }
 
-/*lOGIN ---------------------------*/
+/*REGISTRO ---------------------------*/
 
 .registro {
     width: 50%;
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     background-color: #F2EBDD;
-    padding-top: 90px;
 
 }
 

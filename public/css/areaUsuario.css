@@ -258,6 +258,13 @@ body {
     margin: 0px;
 }
 
+.container h3 {
+    color: #F2EBDD;
+    font-weight: 400;
+    font-size: 17px;
+    margin: 0px;
+}
+
 .container span {
     color: #F2EBDD;
     font-size: 45px;

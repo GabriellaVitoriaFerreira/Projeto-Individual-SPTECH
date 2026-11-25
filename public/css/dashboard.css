@@ -118,18 +118,34 @@ main {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
+    text-align: center;
+    width: 100%;
+    height: 100%;
 }
 
-.conteudo-kpi h4 {
+.conteudo-kpi h2 {
     font-family: "Cormorant Garamond", sans-serif;
     font-size: 15px;
     color: #C4A574;
     margin-bottom: 13px;
 }
 
-.conteudo-kpi p {
-    font-size: 12px;
+.conteudo-kpi h4 {
+    margin-top: 12px;
+    font-size: 14px;
+    font-weight: normal;
+    color: rgb(150, 150, 150);
+}
+
+.conteudo-kpi h4 .porcentagem-dourada {
+    color: #C4A574;
+    font-size: inherit;
+    font-weight: 600;
+}
+
+.conteudo-kpi  p {
+    font-size: 16px;
     color: rgb(150, 150, 150);
 }
 
