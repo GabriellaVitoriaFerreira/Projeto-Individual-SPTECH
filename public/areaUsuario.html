@@ -40,8 +40,9 @@
 
             <div class="borda-imagem-cenas">
 
-                <video id="cena-video" src="assets/video/Retrato De Uma Jovem Em Chamas (2019).mp4" controls>
-                    <!-- <source src="assets/video/Retrato De Uma Jovem Em Chamas (2019).mp4" type="video/mp4"> -->
+                <video id="cena-video"
+                    src="https://res.cloudinary.com/ds8qctxwq/video/upload/Retrato_De_Uma_Jovem_Em_Chamas_2019_pvli6r.mp4"
+                    preload="metadata" controls>
                     Seu navegador não suporta a reprodução de vídeos.
                 </video>
 
@@ -251,16 +252,20 @@
 
     /*VIDEO E IMAGEM DE CENAS --------------------------------------*/
 
+    /*VIDEO E IMAGEM DE CENAS --------------------------------------*/
+
+    const LINK_VIDEO_CLOUDINARY = "https://res.cloudinary.com/ds8qctxwq/video/upload/Retrato_De_Uma_Jovem_Em_Chamas_2019_pvli6r.mp4";
+
     const cenas = [
         {
             ato: "ATO II · CENA FAVORITA",
             titulo: "O Canto ao Redor da Fogueira",
             descricao: "O coro feminino entoa 'Non possum fugere' enquanto as chamas iluminam o primeiro olhar direto e recíproco entre Marianne e Héloïse. <br><br> A cena é completamente hipnótica e arrepiante. Como o filme é marcado pela ausência quase total de trilha sonora, ouvir a música ecoar após tanto silêncio torna o momento ainda mais magnífico. O contraste entre o canto crescente e a troca de olhares entre Marianne e Héloïse cria uma atmosfera de libertação e desejo contido, fazendo quem assiste sentir a intensidade magnética desse encontro antes mesmo de qualquer toque.",
-            video: "assets/video/Retrato De Uma Jovem Em Chamas (2019).mp4"
+            video: "https://res.cloudinary.com/ds8qctxwq/video/upload/Retrato_De_Uma_Jovem_Em_Chamas_2019_pvli6r.mp4"
         },
         {
-            ato: "ATO III · UM NOVO",
-            titulo: "Página 28 ",
+            ato: "ATO III · UM NOVO RETRATO",
+            titulo: "Página 28",
             descricao: "Anos após a despedida, em uma exposição em Roma, Marianne reencontra Héloïse através de uma nova pintura. Ao lado de sua filha, Héloïse posa com serenidade, mas um detalhe sutil transforma a obra em uma mensagem silenciosa: entre seus dedos, o livro permanece aberto na página 28, a mesma onde Marianne havia desenhado seu autorretrato. <br><br> A cena é comovente e transforma o peso da separação em cumplicidade eterna, revelando que, mesmo à distância e com o passar do tempo, Héloïse nunca esqueceu de Marianne.",
             imagem: "assets/cena-retrato-roma.jpg"
         },
@@ -274,10 +279,10 @@
 
     let indiceCenaAtual = 0;
 
-    const buttonAnterior = document.getElementById('cena-anterior');
-    const buttonProximo = document.getElementById('cena-proximo');
+    const btnAnterior = document.getElementById('anterior');
+    const btnProximo = document.getElementById('proximo');
     const videoElement = document.getElementById('cena-video');
-    const imgCenaElement = document.getElementById('cena-img');
+    const imgElement = document.getElementById('cena-img');
     const atoElement = document.getElementById('cena-ato');
     const tituloElement = document.getElementById('cena-titulo');
     const descricaoElement = document.getElementById('cena-descricao');
@@ -285,21 +290,18 @@
     function atualizarCena(novoIndice) {
         const cena = cenas[novoIndice];
 
-        // Sempre pausa o vídeo ao trocar de slide para não continuar tocando escondido
         videoElement.pause();
 
         if (cena.video) {
-            // Se for a cena com vídeo: mostra o <video> e esconde a <img>
-            imgCenaElement.style.display = "none";
+            imgElement.style.display = "none";
             videoElement.style.display = "block";
             videoElement.src = cena.video;
             videoElement.load();
         } else {
-            // Se for cena com imagem: esconde o <video> e mostra a <img>
             videoElement.style.display = "none";
-            imgCenaElement.style.display = "block";
-            imgCenaElement.src = cena.imagem;
-            imgCenaElement.alt = cena.titulo;
+            imgElement.style.display = "block";
+            imgElement.src = cena.imagem;
+            imgElement.alt = cena.titulo;
         }
 
         atoElement.textContent = cena.ato;
@@ -307,7 +309,7 @@
         descricaoElement.innerHTML = cena.descricao;
     }
 
-    proximo.addEventListener('click', () => {
+    btnProximo.addEventListener('click', () => {
         indiceCenaAtual++;
         if (indiceCenaAtual >= cenas.length) {
             indiceCenaAtual = 0;
@@ -315,7 +317,7 @@
         atualizarCena(indiceCenaAtual);
     });
 
-    anterior.addEventListener('click', () => {
+    btnAnterior.addEventListener('click', () => {
         indiceCenaAtual--;
         if (indiceCenaAtual < 0) {
             indiceCenaAtual = cenas.length - 1;
@@ -324,45 +326,45 @@
     });
 
     function carregarHistoricoQuiz() {
-    const idUsuario = sessionStorage.ID_USUARIO;
+        const idUsuario = sessionStorage.ID_USUARIO;
 
-    if (!idUsuario) {
-        console.warn("Usuário não logado no sessionStorage.");
-        return;
+        if (!idUsuario) {
+            console.warn("Usuário não logado no sessionStorage.");
+            return;
+        }
+
+        fetch(`/quiz/historico/${idUsuario}`)
+            .then(function (resposta) {
+                if (resposta.ok) {
+                    return resposta.json();
+                } else {
+                    throw "Erro ao buscar histórico do usuário.";
+                }
+            })
+            .then(function (dados) {
+                if (dados.total_tentativas > 0) {
+                    const porcentagem = Math.round((dados.melhor_pontuacao / 5) * 100);
+
+                    document.getElementById("qtd-tentativas-usuario").innerHTML =
+                        `${dados.total_tentativas} ${dados.total_tentativas === 1 ? 'TENTATIVA REGISTRADA' : 'TENTATIVAS REGISTRADAS'}`;
+
+                    document.getElementById("melhor-pontuacao-usuario").innerHTML =
+                        `${dados.melhor_pontuacao} / 5 acertos`;
+
+                    document.getElementById("aproveitamento-usuario").innerHTML =
+                        `${porcentagem}% de aproveitamento nas questões objetivas`;
+
+                    document.getElementById("ultima-leitura-usuario").innerHTML =
+                        `${dados.ultima_personagem}`;
+
+                    document.getElementById("subtitulo-leitura-usuario").innerHTML =
+                        `Elemento marcante: ${dados.ultimo_elemento}`;
+                }
+            })
+            .catch(function (erro) {
+                console.error(erro);
+            });
     }
-
-    fetch(`/quiz/historico/${idUsuario}`)
-        .then(function (resposta) {
-            if (resposta.ok) {
-                return resposta.json();
-            } else {
-                throw "Erro ao buscar histórico do usuário.";
-            }
-        })
-        .then(function (dados) {
-            if (dados.total_tentativas > 0) {
-                const porcentagem = Math.round((dados.melhor_pontuacao / 5) * 100);
-
-                document.getElementById("qtd-tentativas-usuario").innerHTML = 
-                    `${dados.total_tentativas} ${dados.total_tentativas === 1 ? 'TENTATIVA REGISTRADA' : 'TENTATIVAS REGISTRADAS'}`;
-
-                document.getElementById("melhor-pontuacao-usuario").innerHTML = 
-                    `${dados.melhor_pontuacao} / 5 acertos`;
-
-                document.getElementById("aproveitamento-usuario").innerHTML = 
-                    `${porcentagem}% de aproveitamento nas questões objetivas`;
-
-                document.getElementById("ultima-leitura-usuario").innerHTML = 
-                    `${dados.ultima_personagem}`;
-
-                document.getElementById("subtitulo-leitura-usuario").innerHTML = 
-                    `Elemento marcante: ${dados.ultimo_elemento}`;
-            }
-        })
-        .catch(function (erro) {
-            console.error(erro);
-        });
-}
 
 </script>
 
